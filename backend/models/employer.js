@@ -1,13 +1,14 @@
 const mongoose = require("mongoose");
+const bcrypt = require("bcrypt");
 
 const employerSchema = new mongoose.Schema({
   companyName: { type: String, required: true },
   phoneNumber: { type: String, required: true },
-  emailAddress: { type: String, unique: true, required: true },
+  email: { type: String, unique: true, required: true },
   password: { type: String, required: true },
   city: { type: String },
   website: { type: String },
-  AboutCompany: { type: String },
+  aboutCompany: { type: String },
   weekends: { type: String },
   numberOfEmployees: { type: Number },
   ceo: { type: String },
@@ -17,5 +18,8 @@ const employerSchema = new mongoose.Schema({
   favoriteSekeer: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sekeer" }],
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
-
+employerSchema.pre("save", async function () {
+  this.email = this.email.toLowerCase();
+  this.password = await bcrypt.hash(this.password, 10);
+}); 
 module.exports = mongoose.model("Employer", employerSchema);

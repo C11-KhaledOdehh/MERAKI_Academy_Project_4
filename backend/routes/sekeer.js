@@ -1,10 +1,10 @@
 const express = require("express");
-const { register, login } = require("../controllers/sekeer");
+const { registerSekeer, loginSekeer } = require("../controllers/sekeer");
 
 const seekerRouter = express.Router();
 
-seekerRouter.post("/register", register);
+seekerRouter.post("/register", registerSekeer);
 
-seekerRouter.post("/login", login);
+seekerRouter.post("/login", loginSekeer);
 
 module.exports = seekerRouter;

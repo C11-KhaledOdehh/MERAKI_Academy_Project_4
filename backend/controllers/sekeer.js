@@ -2,7 +2,7 @@ const sekeerModel = require("../models/sekeerSchema");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const register = (req, res) => {
+const registerSekeer = (req, res) => {
   const { fullName, phoneNumber,email, password ,role  } =req.body;
   const user = new sekeerModel({
     fullName,
@@ -37,7 +37,7 @@ const register = (req, res) => {
     });
 };
 
-const login = (req, res) => {
+const loginSekeer = (req, res) => {
   const password = req.body.password;
   const email = req.body.email.toLowerCase();
   sekeerModel
@@ -89,6 +89,6 @@ const login = (req, res) => {
 
 
 module.exports = {
-  register,
-  login,
+  registerSekeer,
+  loginSekeer,
 };
