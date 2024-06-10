@@ -18,4 +18,4 @@ const sekeerSchema = new mongoose.Schema({
   this.password = await bcrypt.hash(this.password, 10);
 }); 
 
-module.exports = mongoose.model("kkkk", sekeerSchema);
+module.exports = mongoose.model("useraa", sekeerSchema);

@@ -3,13 +3,13 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const register = (req, res) => {
-  const { fullName, phoneNumber,email, password  } =req.body;
+  const { fullName, phoneNumber,email, password ,role  } =req.body;
   const user = new sekeerModel({
     fullName,
     phoneNumber,
     email,
     password,
-   
+   role
     
   });
 
@@ -28,7 +28,7 @@ const register = (req, res) => {
           success: false,
           message: `The email already exists`,
         });
-      }
+      } 
       res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -42,7 +42,7 @@ const login = (req, res) => {
   const email = req.body.email.toLowerCase();
   sekeerModel
     .findOne({ email })
-    .populate("role", "-_id -__v")
+    .populate("role")
     .then(async (result) => {
       if (!result) {
         return res.status(403).json({
@@ -60,7 +60,7 @@ const login = (req, res) => {
         }
         const payload = {
           userId: result._id,
-          author: result.fullName,
+          sekeer: result.fullName,
           role: result.role,
         };
 
