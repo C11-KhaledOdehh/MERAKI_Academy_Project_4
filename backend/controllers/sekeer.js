@@ -3,14 +3,13 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 const registerSekeer = (req, res) => {
-  const { fullName, phoneNumber,email, password ,role  } =req.body;
+  const { fullName, phoneNumber, email, password, role } = req.body;
   const user = new sekeerModel({
     fullName,
     phoneNumber,
     email,
     password,
-   role
-    
+    role,
   });
 
   user
@@ -28,7 +27,7 @@ const registerSekeer = (req, res) => {
           success: false,
           message: `The email already exists`,
         });
-      } 
+      }
       res.status(500).json({
         success: false,
         message: `Server Error`,
@@ -72,7 +71,7 @@ const loginSekeer = (req, res) => {
           success: true,
           message: `Valid login credentials`,
           token: token,
-          userId:result._id
+          userId: result._id,
         });
       } catch (error) {
         throw new Error(error.message);
@@ -87,8 +86,60 @@ const loginSekeer = (req, res) => {
     });
 };
 
+const updateSekeerInfoById = (req, res) => {
+  const sekeerId = req.params.id;
+  const {
+    fullName,
+    phoneNumber,
+    password,
+    yearsOfExperience,
+    cv,
+    profilePicture,
+    education,
+  } = req.body;
+
+  bcrypt
+    .hash(password, 10)
+    .then((passwordHash) => {
+      sekeerModel
+        .findByIdAndUpdate(sekeerId, {
+          fullName,
+          phoneNumber,
+          password:passwordHash,
+          yearsOfExperience,
+          cv,
+          profilePicture,
+          education,
+        })
+        .then((updateInfo) => {
+          if (updateInfo) {
+            res.status(200).json({
+              success: true,
+              message: "sekeer information updated",
+              info: updateInfo,
+            });
+          } else {
+            res.status(404).json({
+              success: false,
+              message: `The sekeer ${{ sekeerId }} has not exist`,
+            });
+          }
+        })
+        .catch((error) => {
+          res.status(500).json({
+            success: false,
+            message: "Server Error",
+            err: error,
+          });
+        });
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+};
 
 module.exports = {
   registerSekeer,
   loginSekeer,
+  updateSekeerInfoById
 };
