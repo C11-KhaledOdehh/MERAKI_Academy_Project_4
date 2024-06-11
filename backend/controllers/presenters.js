@@ -4,34 +4,48 @@ const jobModel = require("../models/job");
 const createApplyForJob = (req, res) => {
   const job = req.params.id;
   const seeker = req.token.userId;
-  presentersModel.findOne({ job: job })
-  .then((exist) => {
+  presentersModel
+    .findOne({ job: job })
+    .then((exist) => {
       if (!exist) {
         const jobApplied = new presentersModel({
-            job,
-            seeker,
+          job,
+          seeker,
+        });
+
+        jobApplied
+          .save()
+          .then((savedJob) => {
+            console.log(savedJob);
+          })
+          .catch((err) => {
+            console.log(err);
           });
+      }
+      presentersModel
+        .findOne({ job: job })
 
-          jobApplied
-            .save()
-            .then((savedJob) => {
-              console.log(savedJob);
-
+        .then((result) => {
+          presentersModel
+            .findOneAndUpdate(
+              result,
+              { $addToSet: { seeker: seeker } },
+              { new: true }
+            )
+            .then((result) => {
+              res.json(result);
             })
             .catch((err) => {
               console.log(err);
             });
-}  presentersModel.findOne({job:job})
-     
-.then((result)=>{
-   presentersModel.findOneAndUpdate(result,
-    { $push: { seeker: seeker } },
-    { new: true }).then((result)=>{res.json(result)}).catch((err)=>{console.log(err);})
-}).catch((err)=>{console.log(err);
-})
-
-}).catch((err)=>{console.log(err);}) 
-
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 module.exports = { createApplyForJob };
