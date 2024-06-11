@@ -1,5 +1,4 @@
 const presentersModel = require("../models/presenters");
-const jobModel = require("../models/job");
 
 const createApplyForJob = (req, res) => {
   const job = req.params.id;
@@ -19,7 +18,11 @@ const createApplyForJob = (req, res) => {
             console.log(savedJob);
           })
           .catch((err) => {
-            console.log(err);
+            res.status(500).json({
+              success: false,
+              message: `Server Error`,
+              err: err.message,
+            });
           });
       }
       presentersModel
@@ -36,15 +39,27 @@ const createApplyForJob = (req, res) => {
               res.json(result);
             })
             .catch((err) => {
-              console.log(err);
+              res.status(500).json({
+                success: false,
+                message: `Server Error`,
+                err: err.message,
+              });
             });
         })
         .catch((err) => {
-          console.log(err);
+          res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+          });
         });
     })
     .catch((err) => {
-      console.log(err);
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
     });
 };
 
