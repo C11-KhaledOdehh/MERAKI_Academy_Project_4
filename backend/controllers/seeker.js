@@ -1,10 +1,10 @@
-const sekeerModel = require("../models/sekeerSchema");
+const seekerModel = require("../models/seeker");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
-const registerSekeer = (req, res) => {
+const registerSeeker = (req, res) => {
   const { fullName, phoneNumber, email, password, role } = req.body;
-  const user = new sekeerModel({
+  const user = new seekerModel({
     fullName,
     phoneNumber,
     email,
@@ -18,7 +18,7 @@ const registerSekeer = (req, res) => {
       res.status(201).json({
         success: true,
         message: `Account Created Successfully`,
-        sekeer: result,
+        seeker: result,
       });
     })
     .catch((err) => {
@@ -36,10 +36,10 @@ const registerSekeer = (req, res) => {
     });
 };
 
-const loginSekeer = (req, res) => {
+const loginSeeker = (req, res) => {
   const password = req.body.password;
   const email = req.body.email.toLowerCase();
-  sekeerModel
+  seekerModel
     .findOne({ email })
     .populate("role")
     .then(async (result) => {
@@ -59,7 +59,7 @@ const loginSekeer = (req, res) => {
         }
         const payload = {
           userId: result._id,
-          sekeer: result.fullName,
+          seeker: result.fullName,
           role: result.role,
         };
 
@@ -86,8 +86,8 @@ const loginSekeer = (req, res) => {
     });
 };
 
-const updateSekeerInfoById = (req, res) => {
-  const sekeerId = req.params.id;
+const updateSeekerInfoById = (req, res) => {
+  const seekerId = req.params.id;
   const {
     fullName,
     phoneNumber,
@@ -101,8 +101,8 @@ const updateSekeerInfoById = (req, res) => {
   bcrypt
     .hash(password, 10)
     .then((passwordHash) => {
-      sekeerModel
-        .findByIdAndUpdate(sekeerId, {
+      seekerModel
+        .findByIdAndUpdate(seekerId, {
           fullName,
           phoneNumber,
           password:passwordHash,
@@ -115,13 +115,13 @@ const updateSekeerInfoById = (req, res) => {
           if (updateInfo) {
             res.status(200).json({
               success: true,
-              message: "sekeer information updated",
+              message: "seeker information updated",
               info: updateInfo,
             });
           } else {
             res.status(404).json({
               success: false,
-              message: `The sekeer ${{ sekeerId }} has not exist`,
+              message: `The seeker ${{ seekerId }} has not exist`,
             });
           }
         })
@@ -139,7 +139,7 @@ const updateSekeerInfoById = (req, res) => {
 };
 
 module.exports = {
-  registerSekeer,
-  loginSekeer,
-  updateSekeerInfoById
+  registerSeeker,
+  loginSeeker,
+  updateSeekerInfoById
 };

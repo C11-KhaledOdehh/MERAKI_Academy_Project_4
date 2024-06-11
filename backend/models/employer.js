@@ -15,7 +15,7 @@ const employerSchema = new mongoose.Schema({
   industry: { type: String },
   workingHours: { type: String },
   companyLogo: { type: String },
-  favoriteSekeer: [{ type: mongoose.Schema.Types.ObjectId, ref: "Sekeer" }],
+  
   role: { type: mongoose.Schema.Types.ObjectId, ref: "Role" },
 });
 employerSchema.pre("save", async function () {
