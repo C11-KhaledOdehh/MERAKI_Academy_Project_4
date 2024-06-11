@@ -11,20 +11,27 @@ const createApplyForJob = (req, res) => {
             job,
             seeker,
           });
-        
+
           jobApplied
             .save()
             .then((savedJob) => {
               console.log(savedJob);
-             
+
             })
             .catch((err) => {
               console.log(err);
             });
-}  
+}  presentersModel.findOne({job:job})
+     
+.then((result)=>{
+   presentersModel.findOneAndUpdate(result,
+    { $push: { seeker: seeker } },
+    { new: true }).then((result)=>{res.json(result)}).catch((err)=>{console.log(err);})
+}).catch((err)=>{console.log(err);
+})
 
 }).catch((err)=>{console.log(err);}) 
-  
+
 };
 
 module.exports = { createApplyForJob };
