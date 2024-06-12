@@ -1,8 +1,12 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const navigate = useNavigate();
+
     const Login = () => {
       const userData = {
         email,
@@ -40,6 +44,10 @@ const Login = () => {
         />
         <br />
         <button onClick={Login}>Login</button>
+        <br />
+      <button onClick={()=>{
+navigate("/registerEmployer")
+      }}>Don't Have Account ! Register Now</button>
       </div>
     );
 }

@@ -1,12 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
   const [fullName, setFullName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+const  navigate = useNavigate();
   const Register = () => {
     const userData = {
       fullName,
@@ -63,6 +64,11 @@ function Register() {
       />
       <br />
       <button onClick={Register}>Register</button>
+      <br />
+      <button onClick={()=>{
+navigate("/loginSeeker")
+      }}>Already Have Account ! Login Now</button>
+
     </div>
   );
 }
