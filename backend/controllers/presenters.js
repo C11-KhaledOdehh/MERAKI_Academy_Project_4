@@ -4,55 +4,33 @@ const createApplyForJob = (req, res) => {
   const job = req.params.id;
   const seeker = req.token.userId;
   presentersModel
-    .findOne({ job: job })
-    .then((exist) => {
-      if (!exist) {
-        const jobApplied = new presentersModel({
-          job,
-          seeker,
+  .findOneAndUpdate(
+    {job},
+    { $addToSet: { seeker: seeker } },
+    { new: true }
+  )
+  .then((result) => {
+    res.json(result);
+  })
+  .catch((err) => {
+    res.status(500).json({
+      success: false,
+      message: `Server Error`,
+      err: err.message,
+    });
+  });
+};
+const getAllPresenters = (req, res) => {
+  presentersModel
+    .find()
+    .then((presenter) => {
+      
+        res.status(200).json({
+          success: true,
+          message: `All the presenters`,
+          presenters: presenter,
         });
-
-        jobApplied
-          .save()
-          .then((savedJob) => {
-            console.log(savedJob);
-          })
-          .catch((err) => {
-            res.status(500).json({
-              success: false,
-              message: `Server Error`,
-              err: err.message,
-            });
-          });
-      }
-      presentersModel
-        .findOne({ job: job })
-
-        .then((result) => {
-          presentersModel
-            .findOneAndUpdate(
-              result,
-              { $addToSet: { seeker: seeker } },
-              { new: true }
-            )
-            .then((result) => {
-              res.json(result);
-            })
-            .catch((err) => {
-              res.status(500).json({
-                success: false,
-                message: `Server Error`,
-                err: err.message,
-              });
-            });
-        })
-        .catch((err) => {
-          res.status(500).json({
-            success: false,
-            message: `Server Error`,
-            err: err.message,
-          });
-        });
+      
     })
     .catch((err) => {
       res.status(500).json({
@@ -62,5 +40,4 @@ const createApplyForJob = (req, res) => {
       });
     });
 };
-
-module.exports = { createApplyForJob };
+module.exports = { createApplyForJob ,getAllPresenters};

@@ -1,5 +1,7 @@
 const jobModel = require("../models/job");
+const presentersModel = require("../models/presenters");
 const createNewJob = (req, res) => {
+  const employerId = req.token.userId
   const {
     jobTitle,
     jobType,
@@ -25,16 +27,33 @@ const createNewJob = (req, res) => {
     hoursOrShift,
     description,
     requirement,
+    employer:employerId
   });
 
   newJob
     .save()
     .then((job) => {
+      const jobApplied = new presentersModel({
+        job
+      });
+
+      jobApplied
+        .save()
+        .then((savedJob) => {
       res.status(201).json({
         success: true,
         message: `Job created`,
         job: job,
       });
+        })
+        .catch((err) => {
+          res.status(500).json({
+            success: false,
+            message: `Server Error`,
+            err: err.message,
+          });
+        });
+
     })
     .catch((err) => {
       res.status(500).json({
@@ -47,7 +66,7 @@ const createNewJob = (req, res) => {
 
 const getAllJob = (req, res) => {
   jobModel
-    .find()
+    .find().populate("employer")
     .then((job) => {
       if (job.length) {
         res.status(200).json({
