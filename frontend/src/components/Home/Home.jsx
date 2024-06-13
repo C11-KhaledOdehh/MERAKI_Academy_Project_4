@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect }from "react"; import axios from "axios";
-
+import React, { useState, useContext, useEffect }from "react";
+ import axios from "axios";
 const Home = () => {
   const [job, setJob] = useState([]);
   const [jobTitle, setJobTitle] = useState("");
@@ -21,16 +21,25 @@ const Home = () => {
   Job();
 }, []);
 return (
-  <div>
-    {job.map((job, i) => (
-      <div key={i}>
-        <h2>{job.jobTitle}</h2>
-        <p>Industry: {job.industry}</p>
-        <p>Description: {job.description}</p>
-      </div>
-    ))}
-  </div>
-);
+    <div>
+      {job.map((job, i) => {
+        const date = new Date(job.date);
+        const today = new Date();
+        const timeDiff = today - date;
+        const daysSincePosted = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+
+        return (
+          <div key={i}>
+            <p>{job.jobTitle}</p>
+            <p>{job.employer.companyName}</p>
+            <p>{job.employer.city}</p>
+            <p>{job.description}</p>
+            <p>posted{daysSincePosted} Day</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 export default Home;

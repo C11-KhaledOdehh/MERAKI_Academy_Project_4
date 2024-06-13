@@ -13,6 +13,7 @@ const jobSchema = new mongoose.Schema({
   description: { type: String, required: true },
   requirement: { type: String, required: true },
   employer: { type: mongoose.Schema.Types.ObjectId, ref: "Employer" },
+ date:{type:Date}
 });
 
 module.exports = mongoose.model("Job", jobSchema);

@@ -36,6 +36,27 @@ const registerEmployer = (req, res) => {
     });
 };
 
+const getEmployerById = (req, res) => {
+  const employerId = req.token.userId;
+
+  employerModel
+    .find({ _id: employerId })
+    .then((result) => {
+      res.status(200).json({
+        success: true,
+        message: `Employer found successfully`,
+        employer: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
+
 const loginEmployer = (req, res) => {
   const password = req.body.password;
   const email = req.body.email.toLowerCase();
@@ -147,8 +168,10 @@ const updateEmployerInfoById = (req, res) => {
       console.log(error);
     });
 };
+
 module.exports = {
   registerEmployer,
   loginEmployer,
   updateEmployerInfoById,
+  getEmployerById,
 };

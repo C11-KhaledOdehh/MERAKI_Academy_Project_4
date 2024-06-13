@@ -14,7 +14,8 @@ const createNewJob = (req, res) => {
     hoursOrShift,
     description,
     requirement,
-  } = req.body;
+     } = req.body;
+     
   const newJob = new jobModel({
     jobTitle,
     jobType,
@@ -27,8 +28,8 @@ const createNewJob = (req, res) => {
     hoursOrShift,
     description,
     requirement,
-    employer:employerId
-  });
+    employer:employerId,
+   date:new Date()});
 
   newJob
     .save()

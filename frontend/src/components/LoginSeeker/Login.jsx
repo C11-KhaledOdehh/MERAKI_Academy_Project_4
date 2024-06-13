@@ -34,7 +34,7 @@ const Login = () => {
       Login <br />
       <input
         type="email"
-        defaultValue={"khaled.odeh@gmail.com"}
+        defaultValue={" "}
         placeholder="Email"
         onChange={(e) => {
           setEmail(e.target.value);
