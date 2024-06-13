@@ -14,6 +14,7 @@ const registerEmployer = (req, res) => {
 
   user
     .save()
+    
     .then((result) => {
       res.status(201).json({
         success: true,
@@ -41,7 +42,9 @@ const getEmployerById = (req, res) => {
 
   employerModel
     .find({ _id: employerId })
+    .populate('role')
     .then((result) => {
+      console.log("after login" , result);
       res.status(200).json({
         success: true,
         message: `Employer found successfully`,
@@ -142,6 +145,7 @@ const updateEmployerInfoById = (req, res) => {
           workingHours,
           companyLogo,
         })
+        // .populate("role")
         .then((updateInfo) => {
           if (updateInfo) {
             res.status(200).json({

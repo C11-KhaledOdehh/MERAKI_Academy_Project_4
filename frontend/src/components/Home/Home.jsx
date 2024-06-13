@@ -2,14 +2,10 @@ import React, { useState, useContext, useEffect }from "react";
  import axios from "axios";
 const Home = () => {
   const [job, setJob] = useState([]);
-  const [jobTitle, setJobTitle] = useState("");
-  const [industry, setIndustry] = useState("");
-  const [description, setDescription] = useState("");
     const Job = () => {
       axios
         .get("http://localhost:5000/job")
         .then((result) => {
-          //console.log(result.data.jobs);
        setJob(result.data.jobs)
        
         })

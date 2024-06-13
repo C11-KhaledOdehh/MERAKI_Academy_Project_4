@@ -7,6 +7,6 @@ const employerRouter = express.Router();
 employerRouter.post("/register", registerEmployer);
 employerRouter.post("/login", loginEmployer);
 employerRouter.put("/update/:id", authentication,authorization("UPDATE_INFO") ,updateEmployerInfoById);
-employerRouter.get("/:id" , authentication,getEmployerById);
+employerRouter.get("/" , authentication,getEmployerById);
 
 module.exports = employerRouter;

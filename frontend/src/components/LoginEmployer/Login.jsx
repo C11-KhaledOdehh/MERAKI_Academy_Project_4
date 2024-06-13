@@ -1,10 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { TokenContext } from "../../App";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {setIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
     const navigate = useNavigate();
 
     const Login = () => {
@@ -17,7 +18,12 @@ const Login = () => {
         .post("http://localhost:5000/employer/login", userData)
         .then((result) => {
           console.log(result.data)
-  
+          setToken(result.data.token);
+          setUserId(result.data.userId);
+          setIsLoggedIn(true);
+           localStorage.setItem("isLoggedIn",true)
+          localStorage.setItem("userId",result.data.userId)
+          localStorage.setItem("token",result.data.token) 
         })
         .catch((err) => {
           console.log("err", err);
@@ -43,7 +49,10 @@ const Login = () => {
           }}
         />
         <br />
-        <button onClick={Login}>Login</button>
+        <button onClick={()=>{
+          Login();
+navigate("/myAccount")
+        }}>Login</button>
         <br />
       <button onClick={()=>{
 navigate("/registerEmployer")

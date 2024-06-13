@@ -14,6 +14,7 @@ const Register = () => {
         phoneNumber,
         email,
         password,
+        role:"666752f824653c04a0a6326b"
       };
   
       axios

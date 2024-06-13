@@ -14,6 +14,7 @@ const  navigate = useNavigate();
       phoneNumber,
       email,
       password,
+      role:"666752d024653c04a0a63269"
     };
 
     axios
