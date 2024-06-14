@@ -1,10 +1,12 @@
 import axios from "axios";
 import React ,{ useEffect, useContext, useState }from 'react'
 import { TokenContext } from "../../App";
+import UpdateEmployerAccount from "./UpdateEmployerAccount";
 
 const EmployerMyAccount = () => {
   const { token,userId} = useContext(TokenContext);
   const [employer, setEmployer] = useState([]);
+  const [ isUpdate , setIsUpdate]=useState(false)
   const myAccount=()=>{
    
     const header = {
@@ -27,54 +29,32 @@ const EmployerMyAccount = () => {
 useEffect(() => {
   myAccount();
 }, []);
-const EmployerUpdateMyAccount=()=>{
-  const header = {
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  };
-  const update=
-    {
-      companyName:"odeh",
-    phoneNumber:"0796585565",
-      password:"1245678",
-      city:"amman",
-      website:"www.google.com",
-      aboutCompany:"about company",
-      weekends:"friday",
-      numberOfEmployees:100,
-      ceo:"khaled",
-      industry:"IT",
-      workingHours:"10AM - 5PM",
-      companyLogo:"aaaa"
-  }
-  axios
-  .put(`http://localhost:5000/employer/update/${userId}`,update, header)
-  .then((result) => {
-    console.log(result);
-    myAccount(); })
-  .catch((err) => {
-    console.log("err", err);
-  }); 
-}
+
   
 return (
   <div>
   {employer.map((elem,i)=>{
    return <div key={i}>
-      <h1>company Name : {elem.companyName}</h1>
-      <h1>phone Number : {elem.phoneNumber}</h1>
-      <h1>email : {elem.email}</h1>
-      
- 
-<button onClick={()=>{<div>
-  <input placeholder="company name"/> <br />
-  
-  </div>
-  EmployerUpdateMyAccount();
-}}>Update information</button> 
+      <b>company Name : {elem.companyName}</b><br/>
+      <b>phone Number : {elem.phoneNumber}</b><br/>
+      <b>email : {elem.email}</b><br/>
+      <b>city : {elem.city}</b><br/>
+      <b>website : {elem.website}</b><br/>
+      <b>email : {elem.aboutCompany}</b><br/>
+      <b>number of employees : {elem.numberOfEmployees}</b><br/>
+      <b>CEO : {elem.ceo}</b><br/>
+      <b>industry : {elem.industry}</b><br/>
+      <b>working hours : {elem.workingHours}</b><br/>
+      <b>About company : {elem.companyLogo}</b><br/>
+
+      {isUpdate ? <UpdateEmployerAccount  employer={employer}
+        setEmployer={setEmployer}
+        setIsUpdate={setIsUpdate}/>:<button onClick={()=>{
+        setIsUpdate(true)
+      }}>Update information</button>  }
     </div>
   })}
+
 </div>
 );
 };
