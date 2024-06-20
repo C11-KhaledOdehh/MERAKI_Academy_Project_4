@@ -33,6 +33,7 @@ const createNewJob = (req, res) => {
 
   newJob
     .save()
+    .populate("employer")
     .then((job) => {
       const jobApplied = new presentersModel({
         job
@@ -193,10 +194,36 @@ const deleteJobById = (req, res) => {
     });
 };
 
+const getJobByEmployerId = (req, res) => {
+  const id = req.params.id;
+  jobModel
+    .find({employer:id})
+    .then((job) => {
+      if (!job) {
+        return res.status(404).json({
+          success: false,
+          message: `The job with id => ${id} not found`,
+        });
+      }
+      res.status(200).json({
+        success: true,
+        message: `The job ${id} `,
+        jobs: job,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
 module.exports = {
   createNewJob,
   getAllJob,
   getJobById,
   updateJobById,
   deleteJobById,
+  getJobByEmployerId
 };

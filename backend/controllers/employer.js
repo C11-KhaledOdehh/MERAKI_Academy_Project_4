@@ -145,7 +145,6 @@ const updateEmployerInfoById = (req, res) => {
           workingHours,
           companyLogo,
         })
-        // .populate("role")
         .then((updateInfo) => {
           if (updateInfo) {
             res.status(200).json({

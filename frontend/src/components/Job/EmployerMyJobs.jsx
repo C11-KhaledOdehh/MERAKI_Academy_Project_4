@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect }from "react";
  import axios from "axios";
-const Home = () => {
-  const [job, setJob] = useState([]);
+const EmployerMyJobs = () => {
+    const [job, setJob] = useState([]);
     const Job = () => {
       axios
         .get("http://localhost:5000/job")
@@ -36,5 +36,4 @@ console.log(job);
     </div>
   );
 };
-
-export default Home;
+export default EmployerMyJobs

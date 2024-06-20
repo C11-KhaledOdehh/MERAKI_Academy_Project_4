@@ -5,18 +5,18 @@ import { TokenContext } from "../../App";
 
 const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
   const { token, userId } = useContext(TokenContext);
- const [companyName, setCompanyName] = useState(employer.companyName);
-  const [phoneNumber, setPhoneNumber] = useState(employer.phoneNumber);
+ const [companyName, setCompanyName] = useState(employer.companyName|| "");
+  const [phoneNumber, setPhoneNumber] = useState(employer.phoneNumber|| "");
   const [password, setPassword] = useState("");
-  const [city, setCity] = useState(employer.city);
-  const [website, setWebsite] = useState(employer.website);
-  const [aboutCompany, setAboutCompany] = useState(employer.aboutCompany);
+  const [city, setCity] = useState(employer.city|| "");
+  const [website, setWebsite] = useState(employer.website|| "");
+  const [aboutCompany, setAboutCompany] = useState(employer.aboutCompany|| "");
   const [weekends, setWeekends] = useState(employer.weekends || "");
-  const [numberOfEmployees, setNumberOfEmployees] = useState(employer.numberOfEmployees);
+  const [numberOfEmployees, setNumberOfEmployees] = useState(employer.numberOfEmployees|| "");
   const [ceo, setCeo] = useState(employer.ceo);
-  const [industry, setIndustry] = useState(employer.industry);
-  const [workingHours, setWorkingHours] = useState(employer.workingHours);
-  const [companyLogo, setCompanyLogo] = useState(employer.companyLogo);
+  const [industry, setIndustry] = useState(employer.industry|| "");
+  const [workingHours, setWorkingHours] = useState(employer.workingHours|| "");
+  const [companyLogo, setCompanyLogo] = useState(employer.companyLogo|| "");
 
   const EmployerUpdateMyAccount = () => {
     const header = {
