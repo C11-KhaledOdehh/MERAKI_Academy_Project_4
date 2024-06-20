@@ -8,6 +8,6 @@ jobRouter.get("/", getAllJob);
 jobRouter.get("/:id", getJobById);
 jobRouter.put("/:id", authentication,authorization("UPDATE_JOB") ,updateJobById);
 jobRouter.delete("/:id",authentication,authorization("DELETE_JOB") , deleteJobById);
-jobRouter.get("/employer/:id",getJobByEmployerId);
+jobRouter.get("/employer/:id",authentication,getJobByEmployerId);
 
 module.exports = jobRouter;

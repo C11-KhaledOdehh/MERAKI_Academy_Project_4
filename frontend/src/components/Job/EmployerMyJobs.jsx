@@ -1,10 +1,18 @@
 import React, { useState, useContext, useEffect }from "react";
  import axios from "axios";
+import { TokenContext } from "../../App";
+
 const EmployerMyJobs = () => {
+  const { token, userId } = useContext(TokenContext);
     const [job, setJob] = useState([]);
-    const Job = () => {
+    const employerJob = () => {
+      const header = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      };
       axios
-        .get("http://localhost:5000/job")
+        .get(`http://localhost:5000/job/employer/${userId}`,header)
         .then((result) => {
        setJob(result.data.jobs)
         })
@@ -13,23 +21,14 @@ const EmployerMyJobs = () => {
         });
  };
  useEffect(() => {
-  Job();
+  employerJob();
 }, []);
 return (
     <div>
-      {job.map((job, i) => {
-        const date = new Date(job.date);
-        const today = new Date();
-        const timeDiff = today - date;
-        const daysSincePosted = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-console.log(job);
+      {job.map((job, i) => {     
         return (
           <div key={i}  style={{ border: "2px solid black", padding: "10px", margin: "10px 0" }}>
             <p>{job.jobTitle}</p>
-            <p>{job.employer.companyName}</p>
-
-            <p>{job.description}</p>
-            <p>posted {daysSincePosted} Days ago</p>
           </div>
         );
       })}
