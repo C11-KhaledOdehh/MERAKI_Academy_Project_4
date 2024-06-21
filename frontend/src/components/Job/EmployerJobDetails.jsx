@@ -2,11 +2,14 @@ import React, { useEffect, useState, useContext } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { TokenContext } from "../../App";
-
+import UpdateJob from "./UpdateJob";
+import DeleteJob from "./DeleteJob";
 const EmployerJobDetails = () => {
   const { jobId } = useParams();
   const { token } = useContext(TokenContext);
   const [jobDetails, setJobDetails] = useState(null);
+  const [ isUpdate , setIsUpdate]=useState(false)
+
 
   const jobDetail = () => {
     const header = {
@@ -38,9 +41,10 @@ const EmployerJobDetails = () => {
       
       <p>{jobDetails.description}</p> 
       <p>{jobDetails.employer.companyName}</p> 
-<button>Delete job</button>
-<button>Update job</button>
-
+<button onClick={()=>{<DeleteJob/>}}>Delete job</button>
+{isUpdate ?<UpdateJob update={setIsUpdate}/>:<button onClick={()=>{setIsUpdate(true)
+}}>Update job</button>
+}
       
     </div>
   );
