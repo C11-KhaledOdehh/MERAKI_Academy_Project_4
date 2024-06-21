@@ -33,7 +33,6 @@ const createNewJob = (req, res) => {
 
   newJob
     .save()
-    .populate("employer")
     .then((job) => {
       const jobApplied = new presentersModel({
         job
@@ -45,7 +44,7 @@ const createNewJob = (req, res) => {
       res.status(201).json({
         success: true,
         message: `Job created`,
-        job: job,
+        job: savedJob,
       });
         })
         .catch((err) => {

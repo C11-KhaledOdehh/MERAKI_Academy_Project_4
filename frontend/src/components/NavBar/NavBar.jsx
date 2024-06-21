@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { TokenContext } from "../../App";
 
 const NavBar = () => {
+  const {logout } = useContext(TokenContext);
   const navigate = useNavigate();
 
   return (
@@ -26,6 +28,14 @@ navigate("/createJob")
         }}
       >
         My Jobs
+      </button>
+
+      <button
+        onClick={() => {
+          navigate("/home");
+       logout(); }}
+      >
+        Logout
       </button>
       <hr />
     </div>

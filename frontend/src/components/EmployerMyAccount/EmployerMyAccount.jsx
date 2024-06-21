@@ -29,7 +29,9 @@ const EmployerMyAccount = () => {
 useEffect(() => {
   myAccount();
 }, []);
-
+if (!employer) {
+  return <div></div>;
+}
   
 return (
   <div>
