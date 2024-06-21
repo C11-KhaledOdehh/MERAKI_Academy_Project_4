@@ -9,7 +9,7 @@ const registerEmployer = (req, res) => {
     phoneNumber,
     email,
     password,
-    role,
+    role:"666752f824653c04a0a6326b",
   });
 
   user

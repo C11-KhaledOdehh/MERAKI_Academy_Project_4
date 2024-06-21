@@ -35,12 +35,6 @@ navigate("/home")
       >
         My Account Seeker
       </button>
-
-
-
-
-
-
       <button onClick={()=>{
 navigate("/createJob")
     }}>Create Job</button>

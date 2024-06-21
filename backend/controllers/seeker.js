@@ -9,7 +9,7 @@ const registerSeeker = (req, res) => {
     phoneNumber,
     email,
     password,
-    role,
+    role :"666752d024653c04a0a63269",
   });
 
   user

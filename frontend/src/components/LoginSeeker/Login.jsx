@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
+  const { setSeekerIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
   const navigate = useNavigate();
   const Login = () => {
     const userData = {
@@ -19,8 +19,8 @@ const Login = () => {
       .then((result) => {
         console.log(result.data)
         setToken(result.data.token);
-        setIsLoggedIn(true);
-        localStorage.setItem("isLoggedIn",true)
+        setSeekerIsLoggedIn(true);
+        localStorage.setItem("seekerIsLoggedIn",true)
         setUserId(result.data.userId)
         localStorage.setItem("userId",result.data.userId)
         localStorage.setItem("token",result.data.token)

@@ -15,17 +15,17 @@ import EmployerJobDetails from "./components/Job/EmployerJobDetails";
 import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 export const TokenContext = createContext();
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false||localStorage.getItem("isLoggedIn"));
+  const [seekerIsLoggedIn, setSeekerIsLoggedIn] = useState(false||localStorage.getItem("seekerIsLoggedIn"));
   const [token, setToken] = useState(localStorage.getItem("token")||null);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const logout = () => {
     localStorage.clear();
     setToken(null);
-    setIsLoggedIn(false);
+    seekerIsLoggedIn(false);
   };
   return (
     <TokenContext.Provider
-    value={{ isLoggedIn, setIsLoggedIn, token, setToken,userId, setUserId ,logout}}
+    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn, token, setToken,userId, setUserId ,logout}}
   >
       <NavBar />
       <Routes>
