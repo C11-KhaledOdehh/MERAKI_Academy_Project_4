@@ -12,6 +12,7 @@ import React, { createContext, useState } from "react";
 import CreateJob from "./components/Job/CreateJob";
 import EmployerMyJobs from "./components/Job/EmployerMyJobs";
 import EmployerJobDetails from "./components/Job/EmployerJobDetails";
+import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 export const TokenContext = createContext();
 function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false||localStorage.getItem("isLoggedIn"));
@@ -34,7 +35,8 @@ function App() {
         <Route path="/registerEmployer" element={<RegisterEmployer />} />
         <Route path="/loginEmployer" element={<LoginEmployer />}/>
         <Route path="/home" element={<Home/>}  />
-        <Route path="/myAccount" element={<EmployerMyAccount />}/>
+        <Route path="/EmployerMyAccount" element={<EmployerMyAccount />}/>
+        <Route path="/SeekerMyAccount" element={<SeekerMyAccount />}/>
         <Route path="/createJob" element={<CreateJob />}/>
         <Route path="/myJobs" element={<EmployerMyJobs />}/>
         <Route path="/jobDetails/:jobId" element={<EmployerJobDetails />} />

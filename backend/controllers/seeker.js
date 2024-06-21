@@ -148,7 +148,7 @@ const getSeekerById = (req, res) => {
       console.log("after login" , result);
       res.status(200).json({
         success: true,
-        message: `Employer found successfully`,
+        message: `Seeker found successfully`,
         seeker: result,
       });
     })

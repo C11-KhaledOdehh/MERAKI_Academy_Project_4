@@ -51,7 +51,7 @@ const Login = () => {
         <br />
         <button onClick={()=>{
           Login();
-navigate("/myAccount")
+navigate("/EmployerMyAccount")
         }}>Login</button>
         <br />
       <button onClick={()=>{

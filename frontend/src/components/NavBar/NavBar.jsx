@@ -22,13 +22,19 @@ navigate("/home")
 
       <button
         onClick={() => {
-          navigate("/myAccount");
+          navigate("/EmployerMyAccount");
         }}
       >
         My Account Employer
       </button>
 
-
+      <button
+        onClick={() => {
+          navigate("/SeekerMyAccount");
+        }}
+      >
+        My Account Seeker
+      </button>
 
 
 
