@@ -19,6 +19,22 @@ navigate("/home")
       >
         Sign in
       </button>
+
+      <button
+        onClick={() => {
+          navigate("/myAccount");
+        }}
+      >
+        My Account Employer
+      </button>
+
+
+
+
+
+
+
+
       <button onClick={()=>{
 navigate("/createJob")
     }}>Create Job</button>

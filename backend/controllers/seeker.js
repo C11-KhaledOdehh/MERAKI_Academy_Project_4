@@ -138,8 +138,31 @@ const updateSeekerInfoById = (req, res) => {
     });
 };
 
+const getSeekerById = (req, res) => {
+  const seekerId = req.token.userId;
+
+  seekerModel
+    .find({ _id: seekerId })
+    .populate('role')
+    .then((result) => {
+      console.log("after login" , result);
+      res.status(200).json({
+        success: true,
+        message: `Employer found successfully`,
+        seeker: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        success: false,
+        message: `Server Error`,
+        err: err.message,
+      });
+    });
+};
 module.exports = {
   registerSeeker,
   loginSeeker,
-  updateSeekerInfoById
+  updateSeekerInfoById,
+  getSeekerById
 };
