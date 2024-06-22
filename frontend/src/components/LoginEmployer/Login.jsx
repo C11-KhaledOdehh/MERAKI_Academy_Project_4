@@ -5,7 +5,7 @@ import { TokenContext } from "../../App";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {setIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
+    const {setEmployerIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
     const navigate = useNavigate();
 
     const Login = () => {
@@ -20,8 +20,8 @@ const Login = () => {
           console.log(result.data)
           setToken(result.data.token);
           setUserId(result.data.userId);
-          setIsLoggedIn(true);
-           localStorage.setItem("isLoggedIn",true)
+          setEmployerIsLoggedIn(true);
+           localStorage.setItem("employerIsLoggedIn",true)
           localStorage.setItem("userId",result.data.userId)
           localStorage.setItem("token",result.data.token) 
         })

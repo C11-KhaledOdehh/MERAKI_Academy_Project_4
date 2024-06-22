@@ -16,16 +16,20 @@ import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 export const TokenContext = createContext();
 function App() {
   const [seekerIsLoggedIn, setSeekerIsLoggedIn] = useState(false||localStorage.getItem("seekerIsLoggedIn"));
+  const [employerIsLoggedIn, setEmployerIsLoggedIn] = useState(false||localStorage.getItem("employerIsLoggedIn"));
+
   const [token, setToken] = useState(localStorage.getItem("token")||null);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const logout = () => {
     localStorage.clear();
     setToken(null);
-    seekerIsLoggedIn(false);
+    setSeekerIsLoggedIn(false);
+    setEmployerIsLoggedIn(false);
+
   };
   return (
     <TokenContext.Provider
-    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn, token, setToken,userId, setUserId ,logout}}
+    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout}}
   >
       <NavBar />
       <Routes>
