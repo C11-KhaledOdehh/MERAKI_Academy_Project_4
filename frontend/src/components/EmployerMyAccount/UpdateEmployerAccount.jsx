@@ -1,24 +1,23 @@
 
 import axios from "axios";
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { TokenContext } from "../../App";
 
-const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
+const UpdateEmployerAccount = ({setEmployer,setIsUpdate}) => {
   const { token, userId } = useContext(TokenContext);
- const [companyName, setCompanyName] = useState(employer.companyName|| "");
-  const [phoneNumber, setPhoneNumber] = useState(employer.phoneNumber|| "");
+ const [companyName, setCompanyName] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [city, setCity] = useState(employer.city|| "");
-  const [website, setWebsite] = useState(employer.website|| "");
-  const [aboutCompany, setAboutCompany] = useState(employer.aboutCompany|| "");
-  const [weekends, setWeekends] = useState(employer.weekends || "");
-  const [numberOfEmployees, setNumberOfEmployees] = useState(employer.numberOfEmployees|| "");
-  const [ceo, setCeo] = useState(employer.ceo);
-  const [industry, setIndustry] = useState(employer.industry|| "");
-  const [workingHours, setWorkingHours] = useState(employer.workingHours|| "");
-  const [companyLogo, setCompanyLogo] = useState(employer.companyLogo|| "");
+  const [city, setCity] = useState("");
+  const [website, setWebsite] = useState("");
+  const [aboutCompany, setAboutCompany] = useState("");
+  const [weekends, setWeekends] = useState("");
+  const [numberOfEmployees, setNumberOfEmployees] = useState("");
+  const [ceo, setCeo] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [workingHours, setWorkingHours] = useState("");
+  const [companyLogo, setCompanyLogo] = useState("");
   const [image, setImage ] = useState("");
-  const [ url, setUrl ] = useState("");
   const EmployerUpdateMyAccount = (logoUrl) => {
 console.log(companyLogo);
     const header = {
@@ -138,8 +137,8 @@ console.log(companyLogo);
       />
       <br />
       <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
-{/* <button onClick={uploadImage}>Upload</button>
- */}      <button onClick={()=>{
+      <br />
+     <button onClick={()=>{
         uploadImage()
           
         setIsUpdate(false);

@@ -43,7 +43,7 @@ const SeekerMyAccount = () => {
         <b>cv : {elem.cv}</b><br/>
         <b>email : {elem.aboutCompany}</b><br/>
         <b>number of employees : {elem.numberOfEmployees}</b><br/>
-        <b>profile Picture : {elem.profilePicture}</b><br/>
+        <img src={`${elem.profilePicture}`} style={{ width: '200px', height: '200px' }}/><br/>
         <b>education : {elem.education}</b><br/>
   
       {isUpdate ? <UpdateSeekerAccount  seeker={seeker}

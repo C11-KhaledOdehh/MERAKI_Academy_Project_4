@@ -1,5 +1,5 @@
 
-import React, { useState, useContext,useEffect } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios";
 import { TokenContext } from "../../App";
 
@@ -12,8 +12,8 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
     const [cv, setCv] = useState("");
     const [profilePicture, setProfilePicture] = useState("");
     const [education, setEducation] = useState("");
-   
-     const UpdateMyAccount = () => {
+    const [image, setImage ] = useState("");
+     const UpdateMyAccount = (logoUrl) => {
        const header = {
          headers: {
            Authorization: `Bearer ${token}`,
@@ -25,7 +25,7 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
            password:password,
            yearsOfExperience:yearsOfExperience,
            cv:cv,
-           profilePicture:profilePicture,
+           profilePicture:logoUrl,
            education:education,
        };
        axios
@@ -38,6 +38,22 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
            console.log("err", err);
          });
      };
+     const uploadImage = () => {
+      const data = new FormData()
+      data.append("file", image)
+      data.append("upload_preset", "khaledOdehCloud")
+      data.append("cloud_name","das0e3reo")
+      fetch("  https://api.cloudinary.com/v1_1/das0e3reo/image/upload",{
+      method:"post",
+      body: data
+      })
+      .then(resp => resp.json())
+      .then(data => {
+        setImage(data.url)
+      UpdateMyAccount(data.url);
+      })
+      .catch(err => console.log(err))
+      }
      return (
        <div>
          <input
@@ -82,8 +98,10 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
            value={education}
          />
          <br />
+         <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
+         <br />
          <button onClick={()=>{
-             UpdateMyAccount();
+             uploadImage();
            setIsUpdate(false);
          }}>Update</button>
        </div>
