@@ -32,7 +32,7 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
          .put(`http://localhost:5000/seeker/update/${userId}`, update, header)
          .then((result) => {
            console.log(result.data.info);
-           setSeeker(result.data.info)
+           setSeeker([result.data.info])
          })
          .catch((err) => {
            console.log("err", err);

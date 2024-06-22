@@ -17,9 +17,10 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
   const [industry, setIndustry] = useState(employer.industry|| "");
   const [workingHours, setWorkingHours] = useState(employer.workingHours|| "");
   const [companyLogo, setCompanyLogo] = useState(employer.companyLogo|| "");
-
-  const EmployerUpdateMyAccount = () => {
-
+  const [image, setImage ] = useState("");
+  const [ url, setUrl ] = useState("");
+  const EmployerUpdateMyAccount = (logoUrl) => {
+console.log(companyLogo);
     const header = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -37,7 +38,7 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
         ceo:ceo,
         industry:industry,
         workingHours:workingHours,
-        companyLogo:companyLogo
+        companyLogo:logoUrl
     };
     console.log(token);
     axios
@@ -45,11 +46,28 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
       .then((result) => {
         console.log(result.data.info);
         setEmployer([result.data.info])
+        console.log(update);
       })
       .catch((err) => {
         console.log("err", err);
       });
   };
+  const uploadImage = () => {
+    const data = new FormData()
+    data.append("file", image)
+    data.append("upload_preset", "khaledOdehCloud")
+    data.append("cloud_name","das0e3reo")
+    fetch("  https://api.cloudinary.com/v1_1/das0e3reo/image/upload",{
+    method:"post",
+    body: data
+    })
+    .then(resp => resp.json())
+    .then(data => {
+    setCompanyLogo(data.url)
+    EmployerUpdateMyAccount(data.url);
+    })
+    .catch(err => console.log(err))
+    }
   
   return (
     <div>
@@ -119,10 +137,15 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
         value={aboutCompany}
       />
       <br />
-      <button onClick={()=>{
-          EmployerUpdateMyAccount();
+      <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
+{/* <button onClick={uploadImage}>Upload</button>
+ */}      <button onClick={()=>{
+        uploadImage()
+          
         setIsUpdate(false);
       }}>Update</button>
+
+    
     </div>
   );
 };

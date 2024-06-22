@@ -47,7 +47,9 @@ return (
       <b>CEO : {elem.ceo}</b><br/>
       <b>industry : {elem.industry}</b><br/>
       <b>working hours : {elem.workingHours}</b><br/>
-      <b>About company : {elem.companyLogo}</b><br/>
+      {/* <b>About company : {elem.companyLogo}</b><br/>
+       */}
+         <img src= {`${elem.companyLogo}`}/>
 
       {isUpdate ? <UpdateEmployerAccount  employer={employer}
         setEmployer={setEmployer}

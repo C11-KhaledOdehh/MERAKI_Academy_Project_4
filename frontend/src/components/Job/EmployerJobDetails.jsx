@@ -55,6 +55,8 @@ const EmployerJobDetails = () => {
 
       <p>{jobDetails.description}</p>
       <p>{jobDetails.employer.companyName}</p>
+      <img src= {`${jobDetails.employer.companyLogo}`}/>
+
       <button onClick={()=>{Delete();}}>Delete job</button>
       {isUpdate ? (
         <UpdateJob update={setIsUpdate} />
