@@ -110,7 +110,7 @@ const updateSeekerInfoById = (req, res) => {
           cv,
           profilePicture,
           education,
-        })
+        },{new:true})
         .then((updateInfo) => {
           if (updateInfo) {
             res.status(200).json({

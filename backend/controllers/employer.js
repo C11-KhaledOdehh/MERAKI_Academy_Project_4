@@ -144,7 +144,7 @@ const updateEmployerInfoById = (req, res) => {
           industry,
           workingHours,
           companyLogo,
-        })
+        },{new:true})
         .then((updateInfo) => {
           if (updateInfo) {
             res.status(200).json({

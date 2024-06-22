@@ -146,7 +146,7 @@ const updateJobById = (req, res) => {
       hoursOrShift,
       description,
       requirement,
-    })
+    },{new:true})
     .then((newJob) => {
       if (newJob) {
         res.status(200).json({

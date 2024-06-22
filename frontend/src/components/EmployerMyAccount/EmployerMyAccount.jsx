@@ -14,7 +14,7 @@ const EmployerMyAccount = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    
+    console.log(token)
     axios
     .get("http://localhost:5000/employer", header)
     .then((result) => {

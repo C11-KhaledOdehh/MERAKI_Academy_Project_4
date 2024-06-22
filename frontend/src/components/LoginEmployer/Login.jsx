@@ -24,6 +24,7 @@ const Login = () => {
            localStorage.setItem("employerIsLoggedIn",true)
           localStorage.setItem("userId",result.data.userId)
           localStorage.setItem("token",result.data.token) 
+          navigate("/EmployerMyAccount")
         })
         .catch((err) => {
           console.log("err", err);
@@ -51,7 +52,7 @@ const Login = () => {
         <br />
         <button onClick={()=>{
           Login();
-navigate("/EmployerMyAccount")
+
         }}>Login</button>
         <br />
       <button onClick={()=>{

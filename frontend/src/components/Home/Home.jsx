@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect }from "react";
  import axios from "axios";
+ import JobDetails from "./JobDetails";
 const Home = () => {
   const [job, setJob] = useState([]);
     const Job = () => {
@@ -33,7 +34,10 @@ console.log(job);
           </div>
         );
       })}
+            
+
     </div>
+    
   );
 };
 

@@ -8,7 +8,7 @@ import SeekerOrEmployer from './components/SeekerOrEmployer/SeekerOrEmployer';
 import Home from "./components/Home/Home";
 import EmployerMyAccount from "./components/EmployerMyAccount/EmployerMyAccount";
 import './App.css';
-import React, { createContext, useState } from "react";
+import React, { createContext, useState,useEffect } from "react";
 import CreateJob from "./components/Job/CreateJob";
 import EmployerMyJobs from "./components/Job/EmployerMyJobs";
 import EmployerJobDetails from "./components/Job/EmployerJobDetails";
@@ -27,6 +27,12 @@ function App() {
     setEmployerIsLoggedIn(false);
 
   };
+  useEffect(() => {
+    
+  
+    
+  }, [token])
+  
   return (
     <TokenContext.Provider
     value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout}}

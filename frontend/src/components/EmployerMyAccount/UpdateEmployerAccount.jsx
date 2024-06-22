@@ -19,6 +19,7 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
   const [companyLogo, setCompanyLogo] = useState(employer.companyLogo|| "");
 
   const EmployerUpdateMyAccount = () => {
+
     const header = {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -38,11 +39,12 @@ const UpdateEmployerAccount = ({employer, setEmployer,setIsUpdate}) => {
         workingHours:workingHours,
         companyLogo:companyLogo
     };
+    console.log(token);
     axios
       .put(`http://localhost:5000/employer/update/${userId}`, update, header)
       .then((result) => {
         console.log(result.data.info);
-        setEmployer(result.data.info)
+        setEmployer([result.data.info])
       })
       .catch((err) => {
         console.log("err", err);

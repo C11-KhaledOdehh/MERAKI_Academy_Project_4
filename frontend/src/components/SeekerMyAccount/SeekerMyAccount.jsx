@@ -18,7 +18,7 @@ const SeekerMyAccount = () => {
       .get("http://localhost:5000/seeker", header)
       .then((result) => {
         console.log(result.data.seeker);
-        setSeeker(result.data.seeker);
+        setSeeker([result.data.seeker]);
       })
       .catch((err) => {
         console.log("err", err);
