@@ -1,5 +1,5 @@
 const presentersModel = require("../models/presenters");
-
+const seekerModel = require("../models/seeker");
 const createApplyForJob = (req, res) => {
   const job = req.params.id;
   const seeker = req.token.userId;
@@ -17,7 +17,14 @@ const createApplyForJob = (req, res) => {
           .save()
           .then((savedJob) => {
             console.log(savedJob);
-            res.json(savedJob);
+            return seekerModel.findOneAndUpdate(
+              { _id: seeker },
+              { $addToSet: { jobApplied: job } },
+              { new: true }
+            );
+          })
+          .then((updatedSeeker) => {
+            res.json(updatedSeeker);
           })
           .catch((err) => {
             res.status(500).json({
@@ -34,7 +41,14 @@ const createApplyForJob = (req, res) => {
             { new: true }
           )
           .then((result) => {
-            res.json(result);
+            return seekerModel.findOneAndUpdate(
+              { _id: seeker },
+              { $addToSet: { jobApplied: job } },
+              { new: true }
+            );
+          })
+          .then((updatedSeeker) => {
+            res.json(updatedSeeker);
           })
           .catch((err) => {
             res.status(500).json({
@@ -53,7 +67,6 @@ const createApplyForJob = (req, res) => {
       });
     });
 };
-
 const getAllPresenters = (req, res) => {
   const job = req.params.id;
   presentersModel
