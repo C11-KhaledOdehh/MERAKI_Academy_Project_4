@@ -1,6 +1,5 @@
-import React, { useState, useContext, useEffect }from "react";
+import React, { useState, useEffect }from "react";
  import axios from "axios";
- import JobDetails from "./JobDetails";
  import {useNavigate} from "react-router-dom";
 
 const Home = () => {
@@ -32,7 +31,7 @@ return (
           <div key={i}  style={{ border: "2px solid black", padding: "10px", margin: "10px 0" }} onClick={()=>{
          navigate(`/jobDetail/${job._id}`);  }}>
             <p>{job.jobTitle}</p>
-            <p>{job.employer.companyName}</p>
+            <p>{job.employer.companyName|| "Unknown Company"}</p>
 
             <p>{job.description}</p>
             <p>posted {daysSincePosted} Days ago</p>

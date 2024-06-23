@@ -2,7 +2,6 @@ import React, { useState, useContext, useEffect }from "react";
  import axios from "axios";
 import { TokenContext } from "../../App";
 import { useNavigate } from "react-router-dom";
-import EmployerJobDetails from "./EmployerJobDetails";
 const EmployerMyJobs = () => {
   const { token, userId } = useContext(TokenContext);
     const [job, setJob] = useState([]);
@@ -35,7 +34,11 @@ return (
 
           }}>
             <p>{job.jobTitle}</p>
-            
+            <div>   <button onClick={(e)=>{
+              e.stopPropagation();
+              navigate(`/jobApplicants/${job._id}`)
+
+}}>Job applicants</button></div>
           </div>
         );
       })}

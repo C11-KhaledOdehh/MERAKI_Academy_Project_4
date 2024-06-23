@@ -52,14 +52,13 @@ const EmployerJobDetails = () => {
   return (
     <div>
       <h1>{jobDetails.jobTitle}</h1>
-
       <p>{jobDetails.description}</p>
       <p>{jobDetails.employer.companyName}</p>
       <img src= {`${jobDetails.employer.companyLogo}`}/>
 
       <button onClick={()=>{Delete();}}>Delete job</button>
       {isUpdate ? (
-        <UpdateJob update={setIsUpdate} />
+        <UpdateJob setIsUpdate={setIsUpdate} jobDetail={jobDetail} jobDetails={jobDetails} />
       ) : (
         <button
           onClick={() => {

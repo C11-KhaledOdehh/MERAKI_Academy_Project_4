@@ -1,9 +1,9 @@
 import axios from "axios";
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { TokenContext } from "../../App";
-const UpdateJob = ({setIsUpdate}) => {
-    const { token, userId } = useContext(TokenContext);
+const UpdateJob = ({setIsUpdate,jobDetail,jobDetails}) => {
+    const { token } = useContext(TokenContext);
     const { jobId } = useParams();
     const [jobTitle, setJobTitle] = useState("");
     const [jobType, setJobType] = useState("");
@@ -16,33 +16,32 @@ const UpdateJob = ({setIsUpdate}) => {
     const [hoursOrShift, setHoursOrShift] = useState("");
     const [description, setDescription] = useState("");
     const [requirement, setRequirement] = useState("");
+
     const update = () => {
-
-
         const header = {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         };
         const updated = {
-            jobTitle:jobTitle,
-            jobType:jobType,
-            industry:industry,
-            jobLocation:jobLocation,
-            experienceLevel:experienceLevel,
-            skills:skills,
-            languages:languages,
-            howToApply:howToApply,
-            hoursOrShift:hoursOrShift,
-            description:description,
-            requirement:requirement,
+          jobTitle: jobTitle || jobDetails.jobTitle,
+          jobType: jobType || jobDetails.jobType,
+          industry: industry || jobDetails.industry,
+          jobLocation: jobLocation || jobDetails.jobLocation,
+          experienceLevel: experienceLevel || jobDetails.experienceLevel,
+          skills: skills || jobDetails.skills,
+          languages: languages || jobDetails.languages,
+          howToApply: howToApply || jobDetails.howToApply,
+          hoursOrShift: hoursOrShift || jobDetails.hoursOrShift,
+          description: description || jobDetails.description,
+          requirement: requirement || jobDetails.requirement,
         };
         axios
           .put(`http://localhost:5000/job/${jobId}`, updated, header)
           .then((result) => {
             console.log(result.data);
             setIsUpdate(false); 
-
+      jobDetail();
           })
           .catch((err) => {
             console.log("err", err);

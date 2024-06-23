@@ -69,9 +69,18 @@ const createApplyForJob = (req, res) => {
 };
 const getAllPresenters = (req, res) => {
   const job = req.params.id;
+  
   presentersModel
     .findOne({ job: job })
+    .populate("seeker")
     .then((presenter) => {
+      if (!presenter) {
+        return res.status(404).json({
+          success: false,
+          message: `No presenters found for the job id: ${job}`,
+        });
+      }
+
       res.status(200).json({
         success: true,
         message: `All the presenters`,
@@ -86,5 +95,6 @@ const getAllPresenters = (req, res) => {
       });
     });
 };
+
 
 module.exports = { createApplyForJob, getAllPresenters };
