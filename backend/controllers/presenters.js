@@ -55,8 +55,9 @@ const createApplyForJob = (req, res) => {
 };
 
 const getAllPresenters = (req, res) => {
+  const job = req.params.id;
   presentersModel
-    .find()
+    .findOne({ job: job })
     .then((presenter) => {
       res.status(200).json({
         success: true,
