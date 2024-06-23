@@ -19,7 +19,6 @@ const UpdateEmployerAccount = ({setEmployer,setIsUpdate}) => {
   const [companyLogo, setCompanyLogo] = useState("");
   const [image, setImage ] = useState("");
   const EmployerUpdateMyAccount = (logoUrl) => {
-console.log(companyLogo);
     const header = {
       headers: {
         Authorization: `Bearer ${token}`,

@@ -40,7 +40,7 @@ const SeekerMyAccount = () => {
         <b>phone Number : {elem.phoneNumber}</b><br/>
         <b>email : {elem.email}</b><br/>
         <b>years Of Experience : {elem.yearsOfExperience}</b><br/>
-        <b>cv : {elem.cv}</b><br/>
+        <b>CV: <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Download CV</a></b><br />
         <b>email : {elem.aboutCompany}</b><br/>
         <b>number of employees : {elem.numberOfEmployees}</b><br/>
         <img src={`${elem.profilePicture}`} style={{ width: '200px', height: '200px' }}/><br/>

@@ -1,9 +1,8 @@
-
 import React, { useState, useContext } from "react";
 import axios from "axios";
 import { TokenContext } from "../../App";
 
-const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
+const UpdateSeekerAccount = ({setSeeker,setIsUpdate}) => {
     const { token, userId } = useContext(TokenContext);
     const [fullName, setFullName] = useState("");
     const [phoneNumber, setPhoneNumber] = useState("");
@@ -13,7 +12,9 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
     const [profilePicture, setProfilePicture] = useState("");
     const [education, setEducation] = useState("");
     const [image, setImage ] = useState("");
-     const UpdateMyAccount = (logoUrl) => {
+    const [cvFile, setCvFile] = useState("");
+
+     const UpdateMyAccount = (logoUrl,cvUrl) => {
        const header = {
          headers: {
            Authorization: `Bearer ${token}`,
@@ -24,7 +25,7 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
          phoneNumber:phoneNumber,
            password:password,
            yearsOfExperience:yearsOfExperience,
-           cv:cv,
+           cv:cvUrl,
            profilePicture:logoUrl,
            education:education,
        };
@@ -54,6 +55,22 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
       })
       .catch(err => console.log(err))
       }
+      const uploadCv = () => {
+        const data = new FormData()
+        data.append("file", cvFile)
+        data.append("upload_preset", "khaledOdehCloud")
+        data.append("cloud_name","das0e3reo")
+        fetch("  https://api.cloudinary.com/v1_1/das0e3reo/cv/upload",{
+        method:"post",
+        body: data
+        })
+        .then(resp => resp.json())
+        .then(data => {
+          setCv(data.url)
+        UpdateMyAccount(data.url);
+        })
+        .catch(err => console.log(err))
+        }
      return (
        <div>
          <input
@@ -80,11 +97,7 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
            value={yearsOfExperience}
          />
          <br />
-         <input
-           placeholder="cv"
-           onChange={(e) => setCv(e.target.value)}
-           value={cv}
-         />
+         <b>cv</b><input type="file" onChange= {(e)=> setCvFile(e.target.files[0])}></input>
          <br />
          <input
            placeholder="profile Picture"
@@ -98,10 +111,11 @@ const UpdateSeekerAccount = ({seeker,setSeeker,setIsUpdate}) => {
            value={education}
          />
          <br />
-         <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
+        <b>img</b> <input type="file" onChange= {(e)=> setImage(e.target.files[0])}></input>
          <br />
          <button onClick={()=>{
              uploadImage();
+             uploadCv();
            setIsUpdate(false);
          }}>Update</button>
        </div>

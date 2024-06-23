@@ -4,7 +4,7 @@ import { TokenContext } from "../../App";
 import UpdateEmployerAccount from "./UpdateEmployerAccount";
 
 const EmployerMyAccount = () => {
-  const { token,userId} = useContext(TokenContext);
+  const { token} = useContext(TokenContext);
   const [employer, setEmployer] = useState([]);
   const [ isUpdate , setIsUpdate]=useState(false)
   const myAccount=()=>{
