@@ -14,6 +14,7 @@ import EmployerJobDetails from "./components/Job/EmployerJobDetails";
 import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 import JobDetails from "./components/Home/JobDetails";
 import JobApplicants from "./components/JobApplicants/JobApplicants";
+import 'bootstrap/dist/css/bootstrap.min.css';
 export const TokenContext = createContext();
 function App() {
   const [seekerIsLoggedIn, setSeekerIsLoggedIn] = useState(false||localStorage.getItem("seekerIsLoggedIn"));
@@ -37,7 +38,7 @@ function App() {
   >
       <NavBar />
       <Routes>
-        <Route path="/registerSeeker" element={<RegisterSeeker />} />
+        <Route  path="/registerSeeker" element={<RegisterSeeker /> } />
         <Route path="/loginSeeker" element={<LoginSeeker />} />
         <Route path="/registerEmployer" element={<RegisterEmployer />} />
         <Route path="/loginEmployer" element={<LoginEmployer />}/>
