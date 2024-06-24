@@ -4,7 +4,6 @@ import RegisterSeeker from './components/RegisterSeeker/Register';
 import LoginSeeker from './components/LoginSeeker/Login';
 import LoginEmployer from './components/LoginEmployer/Login';
 import RegisterEmployer from './components/RegisterEmployer/Register';
-import SeekerOrEmployer from './components/SeekerOrEmployer/SeekerOrEmployer';
 import Home from "./components/Home/Home";
 import EmployerMyAccount from "./components/EmployerMyAccount/EmployerMyAccount";
 import './App.css';
@@ -30,9 +29,6 @@ function App() {
 
   };
   useEffect(() => {
-    
-  
-    
   }, [token])
   
   return (
@@ -41,7 +37,6 @@ function App() {
   >
       <NavBar />
       <Routes>
-        <Route path="/seekerOrEmployer" element={<SeekerOrEmployer/>} />
         <Route path="/registerSeeker" element={<RegisterSeeker />} />
         <Route path="/loginSeeker" element={<LoginSeeker />} />
         <Route path="/registerEmployer" element={<RegisterEmployer />} />

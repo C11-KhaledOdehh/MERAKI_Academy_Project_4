@@ -4,6 +4,7 @@ import React, { useState, useEffect }from "react";
 
 const Home = () => {
   const [job, setJob] = useState([]);
+  const [search, setSearch] = useState("");
   const navigate = useNavigate();
 
     const Job = () => {
@@ -19,9 +20,20 @@ const Home = () => {
  useEffect(() => {
   Job();
 }, []);
+const filteredJobs = job.filter((job) =>
+  job.jobTitle.toLowerCase().includes(search.toLowerCase())
+);
 return (
     <div>
-      {job.map((job, i) => {
+      <input
+        type="text"
+        placeholder="Search job titles..."
+        value={search}
+        onChange={(e)=>{
+          setSearch(e.target.value);
+        }}
+      />
+      {filteredJobs.map((job, i) => {
         const date = new Date(job.date);
         const today = new Date();
         const timeDiff = today - date;

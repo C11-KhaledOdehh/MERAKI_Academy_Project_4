@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../../App";
 
@@ -6,13 +6,26 @@ const NavBar = () => {
   const { seekerIsLoggedIn, employerIsLoggedIn, logout } =
     useContext(TokenContext);
   const navigate = useNavigate();
-
+  const [signIn, setSignIn] = useState(false);
   return (
     <div>
-      {!employerIsLoggedIn &&<button onClick={() => navigate("/home")}>Home</button>}
+      {!signIn && (
+        <div>
+          <button onClick={() => navigate("/registerSeeker")}>Seeker</button>
+          <button onClick={() => navigate("/registerEmployer")}>
+            Employer
+          </button>
+        </div>
+      )}
+
+      {!employerIsLoggedIn && (
+        <button onClick={() => navigate("/home")}>Home</button>
+      )}
 
       {!seekerIsLoggedIn && !employerIsLoggedIn && (
-        <button onClick={() => navigate("/seekerOrEmployer")}>Sign in</button>
+        
+          <button onClick={() => {setSignIn(tr)}}>Sign in</button>
+        
       )}
 
       {seekerIsLoggedIn && (
