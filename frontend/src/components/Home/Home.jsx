@@ -1,6 +1,7 @@
 import React, { useState, useEffect }from "react";
  import axios from "axios";
  import {useNavigate} from "react-router-dom";
+ import { Container, Form, Card } from 'react-bootstrap';
 
 const Home = () => {
   const [job, setJob] = useState([]);
@@ -24,37 +25,35 @@ const filteredJobs = job.filter((job) =>
   job.jobTitle.toLowerCase().includes(search.toLowerCase())
 );
 return (
-    <div>
-      <input
-        type="text"
-        placeholder="Search job titles..."
-        value={search}
-        onChange={(e)=>{
-          setSearch(e.target.value);
-        }}
-      />
-      {filteredJobs.map((job, i) => {
-        const date = new Date(job.date);
-        const today = new Date();
-        const timeDiff = today - date;
-        const daysSincePosted = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-        
-        return (
-          <div key={i}  style={{ border: "2px solid black", padding: "10px", margin: "10px 0" }} onClick={()=>{
-         navigate(`/jobDetail/${job._id}`);  }}>
-            <p>{job.jobTitle}</p>
-            <p>{job.employer.companyName|| "Unknown Company"}</p>
+  <div>
+  <Form.Group>
+    <Form.Control
+      type="text"
+      placeholder="Search job titles..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+    />
+  </Form.Group>
 
-            <p>{job.description}</p>
-            <p>posted {daysSincePosted} Days ago</p>
-          </div>
-        );
-      })}
-            
+  {filteredJobs.map((job, i) => {
+    const date = new Date(job.date);
+    const today = new Date();
+    const timeDiff = today - date;
+    const daysSincePosted = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
-    </div>
-    
-  );
+    return (
+      <Card key={i} style={{ border: "2px solid black", margin: "10px 0" }} onClick={() => navigate(`/jobDetail/${job._id}`)}>
+        <Card.Body>
+          <Card.Title>{job.jobTitle}</Card.Title>
+          <Card.Subtitle >{job.employer.companyName || "Unknown Company"}</Card.Subtitle>
+          <Card.Text>{job.description}</Card.Text>
+          <Card.Text>Posted {daysSincePosted} days ago</Card.Text>
+        </Card.Body>
+      </Card>
+    );
+  })}
+</div>
+);
 };
 
 export default Home;

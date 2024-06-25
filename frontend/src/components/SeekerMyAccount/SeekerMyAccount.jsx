@@ -33,28 +33,41 @@ const SeekerMyAccount = () => {
   }
      
   return (
-    <div>
-     {seeker.map((elem,i)=>{
-     return <div key={i}>
-        <b>Full Name : {elem.fullName}</b><br/>
-        <b>phone Number : {elem.phoneNumber}</b><br/>
-        <b>email : {elem.email}</b><br/>
-        <b>years Of Experience : {elem.yearsOfExperience}</b><br/>
-        <b>CV: <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Download CV</a></b><br />
-        <b>email : {elem.aboutCompany}</b><br/>
-        <b>number of employees : {elem.numberOfEmployees}</b><br/>
-        <img src={`${elem.profilePicture}`} style={{ width: '200px', height: '200px' }}/><br/>
-        <b>education : {elem.education}</b><br/>
-  
-      {isUpdate ? <UpdateSeekerAccount  seeker={seeker}
-          setSeeker={setSeeker}
-          setIsUpdate={setIsUpdate}/>:<button onClick={()=>{
-          setIsUpdate(true)
-        }}>Update information</button>  } 
-      </div>
-    })}
-   
-  </div>
+    <div className="container mt-4">
+      {seeker.map((elem, i) => (
+        <div className="row mb-4" key={i}>
+          <div className="col-md-4">
+            <img
+              src={`${elem.profilePicture}`}
+              className="img-fluid rounded"
+              alt="Profile Pic"
+              style={{ width: '200px', height: '200px' }}
+            />
+          </div>
+          <div className="col-md-8">
+            <div className="mb-2"><b>Full Name:</b> {elem.fullName}</div>
+            <div className="mb-2"><b>Phone Number:</b> {elem.phoneNumber}</div>
+            <div className="mb-2"><b>Email:</b> {elem.email}</div>
+            <div className="mb-3">
+              <b>CV:</b> <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Download CV</a>
+            </div>
+            <div className="mb-3"><b>Education:</b> {elem.education}</div>
+            <div className="mb-3"><b>Years Of Experience:</b> {elem.yearsOfExperience}</div>
+            {isUpdate ? (
+              <UpdateSeekerAccount
+                seeker={seeker}
+                setSeeker={setSeeker}
+                setIsUpdate={setIsUpdate}
+              />
+            ) : (
+              <button className="btn btn-primary" onClick={() => setIsUpdate(true)}>
+                Update Information
+              </button>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
   );
-  };
+};
 export default SeekerMyAccount

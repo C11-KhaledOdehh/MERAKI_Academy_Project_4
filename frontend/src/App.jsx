@@ -14,6 +14,7 @@ import EmployerJobDetails from "./components/Job/EmployerJobDetails";
 import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 import JobDetails from "./components/Home/JobDetails";
 import JobApplicants from "./components/JobApplicants/JobApplicants";
+import Footer from "./components/Footer/Footer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 export const TokenContext = createContext();
 function App() {
@@ -36,6 +37,7 @@ function App() {
     <TokenContext.Provider
     value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout}}
   >
+    
       <NavBar />
       <Routes>
         <Route  path="/registerSeeker" element={<RegisterSeeker /> } />
@@ -55,6 +57,7 @@ function App() {
 
 
       </Routes>
+      <Footer/>
       </TokenContext.Provider>
   );
 }

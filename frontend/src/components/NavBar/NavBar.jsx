@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../../App";
-
+import { Button } from "react-bootstrap";
 const NavBar = () => {
   const { seekerIsLoggedIn, employerIsLoggedIn, logout } =
     useContext(TokenContext);
@@ -34,8 +34,8 @@ const NavBar = () => {
     <div>
       {!homePage && (
         <div>
-          <button onClick={() => navigate("/home")}>Home</button>
-          <button
+          <Button onClick={() => navigate("/home")}>Home</Button>
+          <Button
             onClick={() => {
               setHomePage(true);
               setSignIn(true);
@@ -43,34 +43,34 @@ const NavBar = () => {
             }}
           >
             Sign in
-          </button>
+          </Button>
         </div>
       )}
 
       {signIn && (
         <div>
-          <button onClick={() => navigate("/registerSeeker")}>Seeker</button>
-          <button onClick={() => navigate("/registerEmployer")}>
+          <Button onClick={() => navigate("/registerSeeker")}>Seeker</Button>
+          <Button onClick={() => navigate("/registerEmployer")}>
             Employer
-          </button>
+          </Button>
         </div>
       )}
 
       {seekerAccount && (
         <div>
-          <button onClick={() => navigate("/home")}>Home</button>
-          <button onClick={() => navigate("/SeekerMyAccount")}>
+          <Button onClick={() => navigate("/home")}>Home</Button>
+          <Button onClick={() => navigate("/SeekerMyAccount")}>
             {" "}
             My Account Seeker
-          </button>
-          <button
+          </Button>
+          <Button
             onClick={() => {
               navigate("/home");
               logout();
             }}
           >
             Logout
-          </button>
+          </Button>
         </div>
       )}
 
@@ -80,16 +80,16 @@ const NavBar = () => {
             {" "}
             My Account Employer{" "}
           </button>
-          <button onClick={() => navigate("/myJobs")}>My Jobs</button>
-          <button onClick={() => navigate("/createJob")}>Create Job</button>
-          <button
+          <Button onClick={() => navigate("/myJobs")}>My Jobs</Button>
+          <Button onClick={() => navigate("/createJob")}>Create Job</Button>
+          <Button
             onClick={() => {
               navigate("/home");
               logout();
             }}
           >
             Logout
-          </button>
+          </Button>
         </div>
       )}
 

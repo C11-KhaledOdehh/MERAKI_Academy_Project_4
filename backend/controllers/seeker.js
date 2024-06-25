@@ -1,7 +1,6 @@
 const seekerModel = require("../models/seeker");
-const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-
+const jwt = require("jsonwebtoken");
 const registerSeeker = (req, res) => {
   const { fullName, phoneNumber, email, password } = req.body;
   const user = new seekerModel({

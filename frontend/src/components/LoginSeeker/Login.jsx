@@ -2,7 +2,8 @@ import axios from "axios";
 import React, { useState,useContext } from "react";
 import { TokenContext } from "../../App";
 import { useNavigate } from "react-router-dom";
-
+import { Form, Button } from "react-bootstrap";
+import "./Login.css";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,30 +31,35 @@ const Login = () => {
       });
   };
   return (
-    <div>
-      Login <br />
-      <input
-        type="email"
+    <div className="Login">
+     <h4>Job Seeker Account Login</h4> 
+     <Form> 
+     <Form.Group controlId="email">
+     <Form.Control      
+      type="email"
         defaultValue={" "}
         placeholder="Email"
         onChange={(e) => {
           setEmail(e.target.value);
         }}
-      />
-      <br />
-      <input
+        />
+        </Form.Group>
+        <Form.Group controlId="password">
+        <Form.Control
         type="password"
         placeholder="Password"
         onChange={(e) => {
           setPassword(e.target.value);
         }}
-      />
-      <br />
-      <button onClick={Login}>Login</button>
-      <br />
-      <button onClick={()=>{
+        />
+        </Form.Group>
+        <Button
+          variant="primary"
+          onClick={Login}>Login</Button>
+      </Form>
+      <Button variant="link" onClick={()=>{
 navigate("/registerSeeker")
-      }}>Don't Have Account ! Register Now</button>
+      }}>Don't Have Account ! Register Now</Button>
 
     </div>
   );
