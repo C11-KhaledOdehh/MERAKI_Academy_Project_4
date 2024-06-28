@@ -17,6 +17,7 @@ const EmployerMyJobs = () => {
       axios
         .get(`http://localhost:5000/job/employer/${userId}`,header)
         .then((result) => {
+          console.log(result.data.jobs);
        setJob(result.data.jobs)
         })
         .catch((err) => {
@@ -27,22 +28,48 @@ const EmployerMyJobs = () => {
   employerJob();
 }, []);
 return (
-    <div>
-      {job.map((job, i) => {     
-        return (
-          <div key={i}  style={{ border: "2px solid black", padding: "10px", margin: "10px 0" }}onClick={()=>{navigate(`/jobDetails/${job._id}`)
+  <div className="jobContainer">
+    {job.map((job, i) => (
+      <div className="job"
+        key={i}
+        style={{
+          display: "flex",
+          alignItems: "center",
+          padding: "20px",
+          marginBottom: "20px",
+        }}
+        onClick={() => {
+          navigate(`/jobDetails/${job._id}`);
+        }}
+      >
+        <div style={{ marginRight: "20px" }}>
+          <img
+            src={job.employer.companyLogo}
+            alt="Company Logo"
+            style={{ height: "100px", width: "100px", marginBottom: "10px" }}
+          />
+        </div>
 
-          }}>
-            <p>{job.jobTitle}</p>
-            <div>   <button onClick={(e)=>{
+      
+        <div style={{ flexGrow: 1 }}>
+          <p className="fw-bold">{job.jobTitle}</p>
+        </div>
+
+        
+        <div >
+          <button  className="btn btn-primary"
+            onClick={(e) => {
               e.stopPropagation();
-              navigate(`/jobApplicants/${job._id}`)
-
-}}>Job applicants</button></div>
-          </div>
-        );
-      })}
-    </div>
-  );
+              navigate(`/jobApplicants/${job._id}`);
+            }}
+          >
+            Job applicants
+          </button>
+        </div>
+      </div>
+    ))}
+  </div>
+);
 };
-export default EmployerMyJobs
+
+export default EmployerMyJobs;

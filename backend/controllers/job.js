@@ -198,6 +198,7 @@ const getJobByEmployerId = (req, res) => {
   const id = req.params.id;
   jobModel
     .find({employer:id})
+    .populate("employer")
     .then((job) => {
       if (!job) {
         return res.status(404).json({

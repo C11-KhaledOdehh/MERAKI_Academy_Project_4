@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { TokenContext } from "../../App";
-
+import './job.css'
 const CreateJob = () => {
     const { token, userId } = useContext(TokenContext);
  const [jobTitle, setJobTitle] = useState("");
@@ -45,77 +45,111 @@ const CreateJob = () => {
   };
   
   return (
-    <div>
+    <div className="containerJob m-3 ">
+    <h2 className="mt-10 text-center">Create A New Job !</h2>
+    <div className="row">
+<div className="col-md-6 offset-md-3">
+      <div className="form-group mb-3">
       <input
+       type="text"
+                className="form-control"
         placeholder="job Title"
         onChange={(e) => setJobTitle(e.target.value)}
         value={jobTitle}
       />
-      <br />
+     </div>
+     <div className="form-group mb-3">
       <input
+       type="text"
+                className="form-control"
         placeholder="job Type"
         onChange={(e) => setJobType(e.target.value)}
         value={jobType}
       />
-      <br />
+      </div>
+      <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="industry"
         onChange={(e) => setIndustry(e.target.value)}
         value={industry}
       />
-      <br />
+    </div>
+    <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="job Location"
         onChange={(e) => setJobLocation(e.target.value)}
         value={jobLocation}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="experience Level"
         onChange={(e) => setExperienceLevel(e.target.value)}
         value={experienceLevel}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="skills"
         onChange={(e) => setSkills(e.target.value)}
         value={skills}
-      />
-      <br />
+      /> </div>
+      <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="Languages"
         onChange={(e) => setLanguages(e.target.value)}
         value={languages}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="how To Apply"
         onChange={(e) => setHowToApply(e.target.value)}
         value={howToApply}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <input
+      type="text"
+                className="form-control"
         placeholder="hours Or Shift"
         onChange={(e) => setHoursOrShift(e.target.value)}
         value={hoursOrShift}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <textarea
+                className="form-control"
         placeholder="description"
         onChange={(e) => setDescription(e.target.value)}
         value={description}
-      />
-      <br />
+      /> </div>
+       <div className="form-group mb-3">
       <textarea
+                      className="form-control"
+
         placeholder="requirement"
         onChange={(e) => setRequirement(e.target.value)}
         value={requirement}
       />
-      <br />
-       <button onClick={()=>{
+ </div>    <div className="form-group row">
+ <div className="col-sm-12 text-center">
+     <button  type="button"
+                  className="btn btn-primary mt-3" onClick={()=>{
           createNewJob();
-      }}>create New Job</button> 
+      }}>Create New Job</button> 
     </div>
+    </div>
+    </div>
+    </div>
+            </div>
   );
  };
 
