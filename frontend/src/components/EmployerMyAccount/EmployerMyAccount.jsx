@@ -35,27 +35,25 @@ return (
   <div className="container mt-4">
     {employer.map((elem, index) => (
       <div className="row mb-4" key={index}>
-        <div className="col-md-4">
+        <div className="col-md-4" >
           <img
             src={`${elem.companyLogo}`} 
             className="img-fluid rounded"
             alt="Company Logo"
-            style={{ width: '200px', height: '200px' }}
+            style={{ width: '200px', height: '200px'}}
           />
         </div>
-        <div className="col-md-8
-        ">
+        <div className="col-md-8">
           <div className="mb-2"><b>Company Name:</b> {elem.companyName}</div>
           <div className="mb-2"><b>Phone Number:</b> {elem.phoneNumber}</div>
           <div className="mb-2"><b>Email:</b> {elem.email}</div>
           <div className="mb-2"><b>City:</b> {elem.city}</div>
           <div className="mb-2"><b>Website:</b> {elem.website}</div>
-          <div className="mb-2"><b>About Company:</b> {elem.aboutCompany}</div>
           <div className="mb-2"><b>Number of Employees:</b> {elem.numberOfEmployees}</div>
           <div className="mb-2"><b>CEO:</b> {elem.ceo}</div>
           <div className="mb-2"><b>Industry:</b> {elem.industry}</div>
           <div className="mb-2"><b>Working Hours:</b> {elem.workingHours}</div>
-         
+          <div className="mb-2"><b>About Company:</b> {elem.aboutCompany}</div>
           {isUpdate ? (
             <UpdateEmployerAccount
               employer={employer}
@@ -73,5 +71,4 @@ return (
   </div>
 );
 };
-
 export default EmployerMyAccount;

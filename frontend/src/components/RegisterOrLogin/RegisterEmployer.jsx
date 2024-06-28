@@ -1,9 +1,11 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
+import { TokenContext } from "../../App";
 
 const Register = () => {
+  const {setGoToPageSeekerOrEmployer } = useContext(TokenContext);
   const [companyName, setCompanyName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
@@ -85,7 +87,7 @@ const Register = () => {
       <Button
         variant="link"
         onClick={() => {
-          navigate("/loginEmployer");
+          setGoToPageSeekerOrEmployer("LoginEmployer");
         }}
       >
         Already Have Account! Login Now

@@ -28,27 +28,38 @@ const JobApplied = () => {
   useEffect(() => {
     myAccount();
   }, []);
+  if (!seeker) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div>
-       {/*  {seeker.map((elem, i) => (
-            <div key={elem._id}>
-                <h3>Seeker Details</h3>
-                <p><b>Full Name:</b> {elem.fullName}</p>
-                <p><b>Email:</b> {elem.email}</p>
-                <p><b>Phone Number:</b> {elem.phoneNumber}</p>
-                <p><b>Jobs Applied:</b></p>
-                <ul>
-                    {elem.jobApplied.map((jobId, index) => (
-                        <li key={index}>{jobId}</li>
-                    ))}
-                </ul>
-                <p><b>Role:</b> {elem.role.role}</p>
-                <p><b>Permissions:</b> {elem.role.permissions.join(', ')}</p>
-            </div>
-        ))} */}
+    <div className="jobDetails">
+      {seeker.map((seeker, index) => (
+        
+          <div key={index} className="card-body">
+            {seeker.jobApplied.map((job, idx) => (
+              <div key={job._id} className="card mb-3">
+                <div className="card-body">
+                  <h4>{job.jobTitle}</h4><hr/>
+                   <p  className="fw-bold">Description </p>
+                  <p> {job.description}</p>
+                  <p  className="fw-bold">Requirements</p> <p>{job.requirement}</p>
+                  <p  className="fw-bold">Job Type</p><p>{job.jobType}</p>
+                  <p  className="fw-bold">Industry</p> <p>{job.industry}</p>
+                  <p  className="fw-bold">Location</p> <p>{job.jobLocation}</p>
+                  <p  className="fw-bold">Experience Level</p><p>{job.experienceLevel} Years</p>
+                  <p  className="fw-bold">Skills</p><p>{job.skills}</p>
+                  <p  className="fw-bold">Languages</p> <p>{job.languages}</p>
+                 
+                  <p  className="fw-bold">Date Applied</p> <p>{new Date(job.date).toLocaleDateString()}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        
+      ))}
     </div>
-);
+  );
 };
 
-
-export default JobApplied
+export default JobApplied;

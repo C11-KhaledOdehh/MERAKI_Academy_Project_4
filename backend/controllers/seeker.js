@@ -142,8 +142,7 @@ const getSeekerById = (req, res) => {
 
   seekerModel
     .find({ _id: seekerId })
-    .populate('role jobApplied' )
-    
+    .populate('jobApplied')
 
     .then((result) => {
       console.log("after login" , result);

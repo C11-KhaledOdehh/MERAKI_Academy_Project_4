@@ -46,7 +46,8 @@ const createApplyForJob = (req, res) => {
               { $addToSet: { jobApplied: job } },
               { new: true }
             );
-          })
+          }) 
+
           .then((updatedSeeker) => {
             res.json(updatedSeeker);
           })

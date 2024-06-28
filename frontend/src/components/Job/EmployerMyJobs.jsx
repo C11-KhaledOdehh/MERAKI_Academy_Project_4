@@ -46,7 +46,7 @@ return (
           <img
             src={job.employer.companyLogo}
             alt="Company Logo"
-            style={{ height: "100px", width: "100px", marginBottom: "10px" }}
+            style={{ height: "100px", width: "100px", marginBottom: "10px",  }}
           />
         </div>
 

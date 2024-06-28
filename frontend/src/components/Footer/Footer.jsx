@@ -4,15 +4,15 @@ import "./Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary text-light py-4">
-      <Container className='f'>
+    <footer className="a">
+      <Container className='footer'>
         <Row>
           <Col >
             <h6 style={{ textAlign: 'left' }}>About Us</h6>
-            <p style={{ textAlign: 'left' }}>JobIn, founded in 2024 by khaled odeh, is a prominent professional networking platform that connects individuals and businesses globally.</p>
+            <p style={{ textAlign: 'left' }}>JOBin, founded in 2024 by khaled odeh, is a prominent professional networking platform that connects individuals and businesses globally.</p>
           </Col>
           <Col >
-            <h2>JobIn</h2>
+            <h2 style={{ textAlign: 'center' }}>JOBin</h2>
            
           </Col>
           <Col >
@@ -25,9 +25,9 @@ const Footer = () => {
             </address>
           </Col>
         </Row>
-        <Row>
+        <Row style={{ textAlign: 'center' }}>
           <Col >
-            <b>copyright © 2024 JobIn. All rights reserved.</b>
+            <b >copyright © 2024 JOBin. All rights reserved.</b>
           </Col>
         </Row>
       </Container>

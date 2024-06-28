@@ -7,7 +7,7 @@ import "./LoginSeeker.css"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { setSeekerIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
+  const { setSeekerIsLoggedIn, setToken,setUserId,setShowNav ,setGoToPageSeekerOrEmployer} = useContext(TokenContext);
   const navigate = useNavigate();
   const Login = () => {
     const userData = {
@@ -25,6 +25,8 @@ const Login = () => {
         setUserId(result.data.userId)
         localStorage.setItem("userId",result.data.userId)
         localStorage.setItem("token",result.data.token)
+        setShowNav(true) ;
+
         navigate("/home")
 
       })
@@ -61,7 +63,7 @@ const Login = () => {
           onClick={Login}>Login</Button>
       </Form>
       <Button variant="link" onClick={()=>{
-navigate("/registerSeeker")
+setGoToPageSeekerOrEmployer("registerSeeker");
       }}>Don't Have Account ! Register Now</Button>
 
     </div>

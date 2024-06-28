@@ -1,0 +1,27 @@
+.NavBar {
+    background-color: rgb(58,60,61);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  height: 30px;}
+  
+  .NavBar button {
+    margin-right: 20px; 
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff; 
+  }
+  
+  .NavBar button:hover {
+    text-decoration: underline; 
+  }
+  
+  .NavBar b {
+    margin: 10px;
+    font-size: xx-large;
+    color: #ffffff;
+  }
+  

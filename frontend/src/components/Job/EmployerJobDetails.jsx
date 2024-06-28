@@ -58,7 +58,7 @@ const EmployerJobDetails = () => {
             <img
               src={jobDetails.employer.companyLogo}
               alt="Company Logo"
-              style={{ height: '150px', width: '150px', marginBottom: '10px' }}
+              style={{ height: '150px', width: '150px', paddingRight: '30px' }}
             />
           </div>
         

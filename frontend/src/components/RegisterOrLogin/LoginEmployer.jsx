@@ -7,7 +7,7 @@ import { Form, Button, Container, Row, Col } from "react-bootstrap";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const {setEmployerIsLoggedIn, setToken,setUserId } = useContext(TokenContext);
+    const {setEmployerIsLoggedIn, setToken,setUserId ,setShowNav,setGoToPageSeekerOrEmployer} = useContext(TokenContext);
     const navigate = useNavigate();
 
     const Login = () => {
@@ -26,6 +26,7 @@ const Login = () => {
            localStorage.setItem("employerIsLoggedIn",true)
           localStorage.setItem("userId",result.data.userId)
           localStorage.setItem("token",result.data.token) 
+          setShowNav(true);
           navigate("/EmployerMyAccount")
         })
         .catch((err) => {
@@ -67,7 +68,7 @@ const Login = () => {
               <Button
                 variant="link"
                 onClick={() => {
-                  navigate("/registerEmployer");
+                  setGoToPageSeekerOrEmployer("registerEmployer");
                 }}
               >
                 Don't have an account? Register Now

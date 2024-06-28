@@ -1,4 +1,8 @@
-.f{
-    font-size: 10px;
-text-align: center;
+.footer {
+  font-size: 10px;
+  height: 100%;
+color: rgb(248,253,255);
+padding-top: 10px;}
+.a{
+    background-color: rgb(58,60,61);
 }

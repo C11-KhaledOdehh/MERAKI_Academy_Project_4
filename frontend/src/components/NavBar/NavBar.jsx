@@ -1,45 +1,49 @@
 import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../../App";
-import { Button } from "react-bootstrap";
-import SeekerOrEmployer from "../RegisterOrLogin/SeekerOrEmployer";
 
+import './navBar.css'
 const NavBar = () => {
-  const { seekerIsLoggedIn, employerIsLoggedIn, logout,setShowNav } =
+  const { seekerIsLoggedIn, employerIsLoggedIn, logout,setShowNav,setGoToPageSeekerOrEmployer } =
     useContext(TokenContext);
   const navigate = useNavigate();
-const [seekerOrEmployer,setSeekerOrEmployer]=useState(false)
+const [homePage, setHomePage] = useState(false);
   useEffect(() => {
     if (employerIsLoggedIn) {
-    /*   setHomePage(true) */
-
+       
+       setHomePage(true) 
+       
     }
   }, [employerIsLoggedIn]);
   useEffect(() => {
     if (seekerIsLoggedIn) {
-    /*   setHomePage(true) */
-    }
+      
+    setHomePage(true)}
   }, [seekerIsLoggedIn]);
   return (
-    <div>
-
-  <Button onClick={() => navigate("/home")}>Home</Button>
-  <Button onClick={() => { navigate("/seekerOrEmployer");setShowNav(false) }}>Sign in</Button>
-
+    <div className="NavBar">
+<b>JOBin</b>
+ {!homePage && (<div><button onClick={() => navigate("/home")}>Home</button>
+  <button onClick={() => { navigate("/seekerOrEmployer");setGoToPageSeekerOrEmployer("registerSeeker");setShowNav(false) }}>Sign in</button>
+</div>)}
 {seekerIsLoggedIn && (<>
- <Button onClick={() => navigate("/home")}>Home</Button>
-          <Button onClick={() => navigate("/SeekerMyAccount")}> My Account Seeker</Button>
-          <Button onClick={() => navigate("/jobApplied")}>Job Applied</Button>
-          <Button onClick={() => {navigate("/home");      
+ <button onClick={() => navigate("/home")}>Home</button>
+          <button onClick={() => navigate("/SeekerMyAccount")}> My Account Seeker</button>
+          <button onClick={() => navigate("/jobApplied")}>Job Applied</button>
+          <button onClick={() => {navigate("/home");      
+setHomePage(false) 
 
-            logout();}}>Logout</Button>
+            logout();}}>Logout</button>
 </>)}
          
 {employerIsLoggedIn && (<>
-  <Button onClick={() => navigate("/EmployerMyAccount")}>My Account Employer </Button>
-          <Button onClick={() => navigate("/myJobs")}>My Jobs</Button>
-          <Button onClick={() => navigate("/createJob")}>Create Job</Button>
-          <Button onClick={() => { navigate("/home"); logout();}}>Logout</Button>
+  <button onClick={() => navigate("/EmployerMyAccount")}>My Account Employer </button>
+          <button onClick={() => navigate("/myJobs")}>My Jobs</button>
+          <button onClick={() => navigate("/createJob")}>Create Job</button>
+
+          <button onClick={() => { navigate("/home");setHomePage(false);
+
+ logout();}}>Logout</button>
 </>)}       
          
       

@@ -23,9 +23,8 @@ function App() {
   const [seekerIsLoggedIn, setSeekerIsLoggedIn] = useState(false||localStorage.getItem("seekerIsLoggedIn"));
   const [employerIsLoggedIn, setEmployerIsLoggedIn] = useState(false||localStorage.getItem("employerIsLoggedIn"));
    const [signIn, setSignIn] = useState(false);
-  const [homePage, setHomePage] = useState(false);
   const [showNav, setShowNav] = useState(true)
-
+  const [goToPageSeekerOrEmployer, setGoToPageSeekerOrEmployer] = useState("")
   const [token, setToken] = useState(localStorage.getItem("token")||null);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
   const logout = () => {
@@ -40,12 +39,11 @@ function App() {
   
   return (
     <TokenContext.Provider
-    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout,setShowNav}}
+    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout,setShowNav,goToPageSeekerOrEmployer, setGoToPageSeekerOrEmployer}}
   >
 
- <NavBar />
-{/*     <Home />
-    <Footer />  */}
+{showNav && (<><NavBar /> </>)}
+ 
 
    
       
@@ -67,7 +65,7 @@ function App() {
 
 
       </Routes>
-      
+      {showNav &&  <Footer />}
       </TokenContext.Provider>
   );
 }

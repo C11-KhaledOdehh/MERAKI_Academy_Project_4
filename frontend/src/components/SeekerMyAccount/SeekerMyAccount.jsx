@@ -33,7 +33,7 @@ const SeekerMyAccount = () => {
   }
      
   return (
-    <div className="container mt-4">
+    <div className="jobDetails">
       {seeker.map((elem, i) => (
         <div className="row mb-4" key={i}>
           <div className="col-md-4">
@@ -44,7 +44,7 @@ const SeekerMyAccount = () => {
               style={{ width: '200px', height: '200px' }}
             />
           </div>
-          <div className="col-md-8">
+          <div className="col-md-6">
             <div className="mb-2"><b>Full Name:</b> {elem.fullName}</div>
             <div className="mb-2"><b>Phone Number:</b> {elem.phoneNumber}</div>
             <div className="mb-2"><b>Email:</b> {elem.email}</div>
