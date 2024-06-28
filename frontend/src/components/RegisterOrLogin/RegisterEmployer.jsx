@@ -1,27 +1,30 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "./Register.css";
 import { Form, Button } from "react-bootstrap";
-function Register() {
-  const [fullName, setFullName] = useState("");
+
+const Register = () => {
+  const [companyName, setCompanyName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const Register = () => {
     const userData = {
-      fullName,
+      companyName,
       phoneNumber,
       email,
       password,
-      role: "666752d024653c04a0a63269",
+      role: "666752f824653c04a0a6326b",
     };
 
     axios
-      .post("http://localhost:5000/seeker/register", userData)
+      .post("http://localhost:5000/employer/register", userData)
       .then((result) => {
         console.log(result.data);
+        navigate("/loginEmployer");
+
       })
       .catch((err) => {
         console.log("err", err);
@@ -30,61 +33,65 @@ function Register() {
 
   return (
     <div className="Register">
-      <h4>Job Seeker Account Register</h4>
+     
+      <h6>Job Employer Account Register</h6>
       <Form>
-        <Form.Group controlId="fullName">
+        <Form.Group controlId="companyName">
           <Form.Control
             type="text"
-            placeholder="Enter your full name"
-            value={fullName}
-            onChange={(e) => setFullName(e.target.value)}
+            placeholder="Company Name"
+            onChange={(e) => {
+              setCompanyName(e.target.value);
+            }}
           />
         </Form.Group>
-
         <Form.Group controlId="phoneNumber">
           <Form.Control
             type="text"
-            placeholder="Enter your phone number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
+            placeholder="Phone Number"
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
           />
         </Form.Group>
-
         <Form.Group controlId="email">
           <Form.Control
             type="email"
-            placeholder="Enter your email address"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
           />
         </Form.Group>
-
         <Form.Group controlId="password">
           <Form.Control
             type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
           />
         </Form.Group>
-
         <Button
           variant="primary"
-          type="submit"
+          type="button"
           onClick={() => {
             Register();
-            navigate("/loginSeeker");
           }}
         >
           Register Now !
         </Button>
       </Form>
-
-      <Button variant="link" onClick={() => navigate("/loginSeeker")}>
+      <Button
+        variant="link"
+        onClick={() => {
+          navigate("/loginEmployer");
+        }}
+      >
         Already Have Account! Login Now
       </Button>
     </div>
   );
-}
+};
 
 export default Register;

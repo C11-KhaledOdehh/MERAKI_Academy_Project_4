@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
 import NavBar from './components/NavBar/NavBar';
-import RegisterSeeker from './components/RegisterSeeker/Register';
-import LoginSeeker from './components/LoginSeeker/Login';
-import LoginEmployer from './components/LoginEmployer/Login';
-import RegisterEmployer from './components/RegisterEmployer/Register';
+import RegisterSeeker from './components/RegisterOrLogin/RegisterSeeker';
+import LoginSeeker from './components/RegisterOrLogin/LoginSeeker';
+import LoginEmployer from './components/RegisterOrLogin/LoginEmployer';
+import RegisterEmployer from './components/RegisterOrLogin/RegisterEmployer';
 import Home from "./components/Home/Home";
 import EmployerMyAccount from "./components/EmployerMyAccount/EmployerMyAccount";
 import './App.css';
@@ -14,12 +14,17 @@ import EmployerJobDetails from "./components/Job/EmployerJobDetails";
 import SeekerMyAccount from "./components/SeekerMyAccount/SeekerMyAccount";
 import JobDetails from "./components/Home/JobDetails";
 import JobApplicants from "./components/JobApplicants/JobApplicants";
+import JobApplied from "./components/Home/JobApplied";
 import Footer from "./components/Footer/Footer";
+import SeekerOrEmployer from "./components/RegisterOrLogin/SeekerOrEmployer";
 import 'bootstrap/dist/css/bootstrap.min.css';
 export const TokenContext = createContext();
 function App() {
   const [seekerIsLoggedIn, setSeekerIsLoggedIn] = useState(false||localStorage.getItem("seekerIsLoggedIn"));
   const [employerIsLoggedIn, setEmployerIsLoggedIn] = useState(false||localStorage.getItem("employerIsLoggedIn"));
+   const [signIn, setSignIn] = useState(false);
+  const [homePage, setHomePage] = useState(false);
+  const [showNav, setShowNav] = useState(true)
 
   const [token, setToken] = useState(localStorage.getItem("token")||null);
   const [userId, setUserId] = useState(localStorage.getItem("userId"));
@@ -35,10 +40,15 @@ function App() {
   
   return (
     <TokenContext.Provider
-    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout}}
+    value={{ seekerIsLoggedIn, setSeekerIsLoggedIn,employerIsLoggedIn, setEmployerIsLoggedIn, token, setToken,userId, setUserId ,logout,setShowNav}}
   >
-    
-      <NavBar />
+
+ <NavBar />
+{/*     <Home />
+    <Footer />  */}
+
+   
+      
       <Routes>
         <Route  path="/registerSeeker" element={<RegisterSeeker /> } />
         <Route path="/loginSeeker" element={<LoginSeeker />} />
@@ -52,12 +62,12 @@ function App() {
         <Route path="/jobDetails/:jobId" element={<EmployerJobDetails />} />
         <Route path="/jobDetail/:jobId" element={<JobDetails />}/>
         <Route path="/jobApplicants/:jobId" element={<JobApplicants />} />
-
-
+        <Route path="/jobApplied" element={<JobApplied />}/>
+        <Route path="/seekerOrEmployer" element={<SeekerOrEmployer />} />
 
 
       </Routes>
-      <Footer/>
+      
       </TokenContext.Provider>
   );
 }

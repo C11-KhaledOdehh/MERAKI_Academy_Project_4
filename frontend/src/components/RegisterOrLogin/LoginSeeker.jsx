@@ -3,7 +3,7 @@ import React, { useState,useContext } from "react";
 import { TokenContext } from "../../App";
 import { useNavigate } from "react-router-dom";
 import { Form, Button } from "react-bootstrap";
-import "./Login.css";
+import "./LoginSeeker.css"
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,14 +25,17 @@ const Login = () => {
         setUserId(result.data.userId)
         localStorage.setItem("userId",result.data.userId)
         localStorage.setItem("token",result.data.token)
+        navigate("/home")
+
       })
       .catch((err) => {
         console.log("err", err);
       });
   };
-  return (
+  return (  
     <div className="Login">
-     <h4>Job Seeker Account Login</h4> 
+   
+     <h6>Job Seeker Account Login</h6> 
      <Form> 
      <Form.Group controlId="email">
      <Form.Control      

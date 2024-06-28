@@ -2,10 +2,13 @@ import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TokenContext } from "../../App";
 import axios from "axios";
+import './job.css'
 const JobDetails = () => {
   const { token,userId } = useContext(TokenContext);
   const { jobId } = useParams();
   const [job, setJob] = useState({});
+  const [isApply, setIsApply] = useState(false);
+
   const JobDetail = () => {
     axios
       .get(`http://localhost:5000/job/${jobId}`)
@@ -26,9 +29,7 @@ const JobDetails = () => {
       const data = {
         seekerId: userId,
       };
-      console.log(token);
-      console.log(jobId);
-      console.log(userId);
+     
       axios
         .post(`http://localhost:5000/presenters/${jobId}`, data, header)
         .then((result) => {
@@ -44,26 +45,76 @@ const JobDetails = () => {
   }, []);
 
   return (
-    <div>
-      <h1>{job.jobTitle}</h1>
-      <p>Type:{job.jobType}</p>
-      <p>Industry:{job.industry}</p>
-      <p>Location: {job.jobLocation}</p>
-      <p>Experience Level: {job.experienceLevel}</p>
-      <p>Skills:{job.skills}</p>
-      <p>Languages:{job.languages}</p>
-      <p>How to Apply:{job.howToApply}</p>
-      <p>Hours/Shift: {job.hoursOrShift}</p>
-      <p>Description:{job.description}</p>
-      <p>Requirement:{job.requirement}</p>
-      <button
-        onClick={() => {
-          applyJob();
-        }}
-      >
-        Apply
-      </button>
+    <div className="jobDetails">
+      <div className="row">
+        {job.employer && job.employer.companyLogo && (
+          <div className="col-md-3">
+            <img
+              src={job.employer.companyLogo}
+              alt="Company Logo"
+              style={{ height: '150px', width: '150px', marginBottom: '10px' }}
+            />
+            <p className="fw-bold">Company Name</p>
+            <p >{job.employer.companyName}</p><hr/>
+            <p className="fw-bold">City</p>
+            <p >{job.employer.city}</p><hr/>
+            <p className="fw-bold">Industry</p>
+            <p >{job.employer.industry}</p><hr/>
+            <p className="fw-bold">Weekends</p>
+            <p >{job.employer.weekends}</p><hr/>
+            <p className="fw-bold">WebSite</p>
+            <a href={job.employer.website}>{job.employer.website}<hr/></a>
+            <p className="fw-bold">CEO</p>
+            <p >{job.employer.ceo}</p><hr/>
+          </div>
+        )}
+
+        <div className="col-md-9">
+          <h1>{job.jobTitle}</h1><hr/>
+          <p className="fw-bold">Description</p>
+          <p>{job.description}</p><hr/>
+
+          <p className="fw-bold">Requirement</p>
+          <p>{job.requirement}</p><hr/>
+
+          <div className="col-md-6">
+            <div className="col-md-9">
+              <p className="fw-bold">Type</p>
+              <p >{job.jobType}</p><hr/>
+              <p className="fw-bold">Industry</p>
+              <p >{job.industry}</p><hr/>
+              <p className="fw-bold">Location</p>
+              <p >{job.jobLocation}</p><hr/>
+            </div>
+            <div className="col-md-6">
+              <p className="fw-bold">Experience Level:</p>
+              <p > {job.experienceLevel}</p><hr/>
+              <p className="fw-bold">Skills</p>
+              <p >{job.skills}</p><hr/>
+              <p className="fw-bold">Languages</p>
+              <p >{job.languages}</p><hr/>
+              <p className="fw-bold">How to Apply</p>
+          <p>{job.howToApply}</p><hr/>
+          <p className="fw-bold">Hours/Shift</p>
+          <p>{job.hoursOrShift}</p>
+            </div>
+          </div>
+
+          <div className="d-grid gap-2 col-6 mx-auto">
+            {!isApply ? (
+              <button className="btn btn-primary" onClick={() => { applyJob(); setIsApply(true); }}>
+                Apply
+              </button>
+            ) : (
+              <button className="btn btn-primary" disabled>
+                Applied
+              </button>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
+
 export default JobDetails;

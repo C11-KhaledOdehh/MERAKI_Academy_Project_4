@@ -8,15 +8,15 @@ const Footer = () => {
       <Container className='f'>
         <Row>
           <Col >
-            <h5>About Us</h5>
+            <h6 style={{ textAlign: 'left' }}>About Us</h6>
             <p style={{ textAlign: 'left' }}>JobIn, founded in 2024 by khaled odeh, is a prominent professional networking platform that connects individuals and businesses globally.</p>
           </Col>
           <Col >
-            <h1>JobIn</h1>
+            <h2>JobIn</h2>
            
           </Col>
           <Col >
-            <h5>Contact Us</h5>
+            <h6 >Contact Us</h6>
             <address>
               Jordan<br />
               Amman, Makkah st.<br />

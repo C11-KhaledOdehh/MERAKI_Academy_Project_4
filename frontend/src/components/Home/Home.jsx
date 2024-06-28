@@ -1,8 +1,7 @@
 import React, { useState, useEffect }from "react";
  import axios from "axios";
  import {useNavigate} from "react-router-dom";
- import { Container, Form, Card } from 'react-bootstrap';
-
+ import { Form, Card } from 'react-bootstrap';
 const Home = () => {
   const [job, setJob] = useState([]);
   const [search, setSearch] = useState("");
@@ -42,16 +41,24 @@ return (
     const daysSincePosted = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
 
     return (
-      <Card key={i} style={{ border: "2px solid black", margin: "10px 0" }} onClick={() => navigate(`/jobDetail/${job._id}`)}>
-        <Card.Body>
-          <Card.Title>{job.jobTitle}</Card.Title>
-          <Card.Subtitle >{job.employer.companyName || "Unknown Company"}</Card.Subtitle>
-          <Card.Text>{job.description}</Card.Text>
-          <Card.Text>Posted {daysSincePosted} days ago</Card.Text>
-        </Card.Body>
-      </Card>
+      <Card key={i} style={{ border: "2px solid black", margin: "10px 0", height: "200px" }} onClick={() => navigate(`/jobDetail/${job._id}`)}>
+          <div className="row no-gutters">
+            <div className="col-auto pr-3">
+              <Card.Img src={job.employer.companyLogo} alt="Company Logo" style={{height: "100px", width: "100px",margin: "10px " }} />
+            </div>
+            <div className="col">
+              <Card.Body>
+                <Card.Title>{job.jobTitle}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">{job.employer.companyName || "Unknown Company"}</Card.Subtitle>
+                <Card.Text>{job.description}</Card.Text>
+                <Card.Text>Posted {daysSincePosted} days ago</Card.Text>
+              </Card.Body>
+            </div>
+          </div>
+        </Card>
     );
   })}
+
 </div>
 );
 };

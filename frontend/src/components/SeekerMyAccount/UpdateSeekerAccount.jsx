@@ -86,7 +86,7 @@ const UpdateSeekerAccount = ({ seeker, setSeeker, setIsUpdate }) => {
             <div className="form-group mb-3">
               <input
                 type="text"
-                className="form-control"
+                className="form-control "
                 placeholder="Full Name"
                 onChange={(e) => setFullName(e.target.value)}
                 value={fullName}
