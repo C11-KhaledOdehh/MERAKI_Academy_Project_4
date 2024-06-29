@@ -69,7 +69,8 @@ const UpdateEmployerAccount = ({employer,setEmployer,setIsUpdate}) => {
   
     return (
       <div className="container mt-4">
-        <h2 className="mb-4">Update Any Field You Want!</h2>
+        <hr/>
+        <h2 className="mb-4" style={{ textAlign: 'center' }}>Update Any Field You Want!</h2>
         <div className="row">
           <div className="col-md-6">
             <div className="form-group mb-3">
@@ -125,7 +126,8 @@ const UpdateEmployerAccount = ({employer,setEmployer,setIsUpdate}) => {
                 onChange={(e) => setWeekends(e.target.value)}
                 value={weekends}
               />
-            </div>
+            </div></div>
+            <div className="col-md-6">
             <div className="form-group mb-3">
               <input
                 type="text"
@@ -162,8 +164,7 @@ const UpdateEmployerAccount = ({employer,setEmployer,setIsUpdate}) => {
                 value={workingHours}
               />
             </div>
-          </div>
-          <div className="col-md-6">
+          
             <div className="form-group mb-3">
               <textarea
                 className="form-control"
@@ -179,9 +180,9 @@ const UpdateEmployerAccount = ({employer,setEmployer,setIsUpdate}) => {
                 className="form-control-file"
                 onChange={(e) => setImage(e.target.files[0])}
               />
-            </div>
+            </div></div>
             <div className="form-group row">
-              <div className="col-sm-12 text-center">
+              <div className="col-md-6 offset-md-3 text-center">
                 <button
                   type="button"
                   className="btn btn-primary mt-3"
@@ -194,7 +195,7 @@ const UpdateEmployerAccount = ({employer,setEmployer,setIsUpdate}) => {
                 </button>
               </div>
             </div>
-          </div>
+          
         </div>
       </div>
     );

@@ -41,7 +41,7 @@ const Register = () => {
         <Form.Group controlId="companyName">
           <Form.Control
             type="text"
-            placeholder="Company Name"
+            placeholder="Enter your Company Name"
             onChange={(e) => {
               setCompanyName(e.target.value);
             }}
@@ -50,7 +50,7 @@ const Register = () => {
         <Form.Group controlId="phoneNumber">
           <Form.Control
             type="text"
-            placeholder="Phone Number"
+            placeholder="Enter your Phone Number"
             onChange={(e) => {
               setPhoneNumber(e.target.value);
             }}
@@ -59,7 +59,7 @@ const Register = () => {
         <Form.Group controlId="email">
           <Form.Control
             type="email"
-            placeholder="Email"
+            placeholder="Enter your Email"
             onChange={(e) => {
               setEmail(e.target.value);
             }}
@@ -68,7 +68,7 @@ const Register = () => {
         <Form.Group controlId="password">
           <Form.Control
             type="password"
-            placeholder="Password"
+            placeholder="Enter your Password"
             onChange={(e) => {
               setPassword(e.target.value);
             }}

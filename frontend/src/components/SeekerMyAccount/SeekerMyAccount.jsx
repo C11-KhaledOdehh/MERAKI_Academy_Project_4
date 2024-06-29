@@ -49,7 +49,7 @@ const SeekerMyAccount = () => {
             <div className="mb-2"><b>Phone Number:</b> {elem.phoneNumber}</div>
             <div className="mb-2"><b>Email:</b> {elem.email}</div>
             <div className="mb-3">
-              <b>CV:</b> <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Download CV</a>
+              <b>CV:</b> <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Show CV</a>
             </div>
             <div className="mb-3"><b>Education:</b> {elem.education}</div>
             <div className="mb-3"><b>Years Of Experience:</b> {elem.yearsOfExperience}</div>

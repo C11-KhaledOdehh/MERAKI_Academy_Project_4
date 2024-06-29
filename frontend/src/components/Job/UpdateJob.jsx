@@ -49,10 +49,10 @@ const UpdateJob = ({setIsUpdate,jobDetail,jobDetails}) => {
       };
       
   return (
-    <div className="container mt-4">
-        <h2 className="mb-4">Update Any Field You Want!</h2>
+    <div className="container mt-4"> <hr/>
+        <h2 className="mb-4" style={{ textAlign: 'center' }}>Update Any Field You Want!</h2>
         <div className="row">
-        <div className="col-md-6 offset-md-3">
+        <div className="col-md-6 ">
         <div className="form-group mb-3">
   <input
    type="text"
@@ -107,7 +107,7 @@ const UpdateJob = ({setIsUpdate,jobDetail,jobDetails}) => {
         onChange={(e) => setSkills(e.target.value)}
         value={skills}
       />
-      </div>
+      </div></div>    <div className="col-md-6">
       <div className="form-group mb-3">
       <input
        type="text"
@@ -152,11 +152,16 @@ const UpdateJob = ({setIsUpdate,jobDetail,jobDetails}) => {
         value={requirement}
       /></div>
       </div>
-</div>
-<button onClick={
+      </div> 
+      <div className="form-group row">
+              <div className="col-md-6 offset-md-3 text-center">
+                <button
+                  type="button"
+                  className="btn btn-primary mt-3" onClick={
           update
       }>Update</button>
-
+ </div>
+ </div>
 
 </div>
 

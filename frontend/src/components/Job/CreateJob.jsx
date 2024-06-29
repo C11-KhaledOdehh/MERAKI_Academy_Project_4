@@ -1,7 +1,6 @@
 import axios from "axios";
 import React, { useState, useContext } from "react";
 import { TokenContext } from "../../App";
-import './job.css'
 const CreateJob = () => {
     const { token, userId } = useContext(TokenContext);
  const [jobTitle, setJobTitle] = useState("");

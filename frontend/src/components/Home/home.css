@@ -1,0 +1,88 @@
+.search {
+    padding: 20px;
+  }
+.jobHome{
+margin: 10px 40px 10px 30px;
+height: 200px;
+cursor: pointer;
+background-color: rgb(238, 237, 237);  
+}
+
+.jobDetails{
+  margin: 50px;
+background-color:rgb(238, 237, 237);  
+padding: 50px;
+border-radius: 10px;}
+a{
+  text-decoration: none;
+}
+.myAccount{
+  background-color:rgb(238, 237, 237);    
+
+border-radius: 10px;
+margin: 20px;
+padding: 30px;}
+
+.containerJob {
+  background-color: rgb(238, 237, 237);
+border-radius: 10px;}
+.job{
+background-color: rgb(238, 237, 237);
+border-radius: 10px;
+}
+.jobContainer{
+padding: 20px;
+}
+.NavBar {
+    background-color: rgb(58,60,61);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  height: 40px;}
+  
+  .NavBar button {
+    margin-right: 20px; 
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff; 
+  }
+  
+  .NavBar button:hover {
+    text-decoration: underline; 
+  }
+  
+  .NavBar b {
+    margin: 10px;
+    font-size: xx-large;
+    color: #ffffff;
+  }
+  .NavBar {
+    background-color: rgb(58,60,61);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+  height: 40px;}
+  
+  .NavBar button {
+    margin-right: 20px; 
+    font-size: 16px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    color: #ffffff; 
+  }
+  
+  .NavBar button:hover {
+    text-decoration: underline; 
+  }
+  
+  .NavBar b {
+    margin: 10px;
+    font-size: xx-large;
+    color: #ffffff;
+  }
+  

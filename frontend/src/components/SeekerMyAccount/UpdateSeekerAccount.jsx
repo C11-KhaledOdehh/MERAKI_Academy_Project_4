@@ -79,7 +79,8 @@ const UpdateSeekerAccount = ({ seeker, setSeeker, setIsUpdate }) => {
 
   return (
     <div className="container mt-4">
-      <h2 className="mb-4">Update Any Field You Want!</h2>
+      <hr/>
+      <h4 className="mb-4">Update Any Field You Want!</h4>
       <form>
         <div className="row">
           <div className="col-md-6">

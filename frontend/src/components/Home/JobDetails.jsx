@@ -2,9 +2,8 @@ import React, { useEffect, useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import { TokenContext } from "../../App";
 import axios from "axios";
-import './job.css'
 const JobDetails = () => {
-  const { token,userId } = useContext(TokenContext);
+  const { token,userId ,seekerIsLoggedIn} = useContext(TokenContext);
   const { jobId } = useParams();
   const [job, setJob] = useState({});
   const [isApply, setIsApply] = useState(false);
@@ -48,11 +47,11 @@ const JobDetails = () => {
     <div className="jobDetails">
       <div className="row">
         {job.employer && job.employer.companyLogo && (
-          <div className="col-md-3">
+          <div className="col-md-3" >
             <img
               src={job.employer.companyLogo}
               alt="Company Logo"
-              style={{ height: '150px', width: '150px', marginBottom: '10px' }}
+              style={{ height: '150px', width: '150px', paddingRight: '30px' }}
             />
             <p className="fw-bold">Company Name</p>
             <p >{job.employer.companyName}</p><hr/>
@@ -76,21 +75,24 @@ const JobDetails = () => {
 
           <p className="fw-bold">Requirement</p>
           <p>{job.requirement}</p><hr/>
-
-          <div className="col-md-6">
-            <div className="col-md-9">
+          
+          <div class="row">
+    <div class="col-md-6 offset-md-0">
+      <div class="job-details">
               <p className="fw-bold">Type</p>
               <p >{job.jobType}</p><hr/>
               <p className="fw-bold">Industry</p>
               <p >{job.industry}</p><hr/>
               <p className="fw-bold">Location</p>
               <p >{job.jobLocation}</p><hr/>
-            </div>
-            <div className="col-md-6">
+              <p className="fw-bold">Skills</p>
+              <p >{job.skills}</p>
+            </div> </div>
+            <div class="col-md-6 offset-md-0">
+      <div class="job-details">
               <p className="fw-bold">Experience Level:</p>
               <p > {job.experienceLevel}</p><hr/>
-              <p className="fw-bold">Skills</p>
-              <p >{job.skills}</p><hr/>
+              
               <p className="fw-bold">Languages</p>
               <p >{job.languages}</p><hr/>
               <p className="fw-bold">How to Apply</p>
@@ -99,9 +101,12 @@ const JobDetails = () => {
           <p>{job.hoursOrShift}</p>
             </div>
           </div>
-
-          <div className="d-grid gap-2 col-6 mx-auto">
-            {!isApply ? (
+          </div>
+          </div>  </div>
+          
+          {seekerIsLoggedIn && (
+            <div className="d-grid gap-2 col-6 mx-auto">
+         {!isApply ? (
               <button className="btn btn-primary" onClick={() => { applyJob(); setIsApply(true); }}>
                 Apply
               </button>
@@ -110,10 +115,9 @@ const JobDetails = () => {
                 Applied
               </button>
             )}
-          </div>
+          </div> )}  
         </div>
-      </div>
-    </div>
+    
   );
 };
 

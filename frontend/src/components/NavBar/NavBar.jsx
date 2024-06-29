@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { TokenContext } from "../../App";
 
-import './navBar.css'
 const NavBar = () => {
   const { seekerIsLoggedIn, employerIsLoggedIn, logout,setShowNav,setGoToPageSeekerOrEmployer } =
     useContext(TokenContext);

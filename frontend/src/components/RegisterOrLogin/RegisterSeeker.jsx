@@ -39,7 +39,7 @@ function Register() {
         <Form.Group controlId="fullName">
           <Form.Control
             type="text"
-            placeholder="Enter your full name"
+            placeholder="Enter your Full Name"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
           />
@@ -48,7 +48,7 @@ function Register() {
         <Form.Group controlId="phoneNumber">
           <Form.Control
             type="text"
-            placeholder="Enter your phone number"
+            placeholder="Enter your Phone Number"
             value={phoneNumber}
             onChange={(e) => setPhoneNumber(e.target.value)}
           />
@@ -57,7 +57,7 @@ function Register() {
         <Form.Group controlId="email">
           <Form.Control
             type="email"
-            placeholder="Enter your email address"
+            placeholder="Enter your Email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />

@@ -8,9 +8,9 @@ import { TokenContext } from "../../App";
 const SeekerOrEmployer = () => {
   const { goToPageSeekerOrEmployer, setGoToPageSeekerOrEmployer } = useContext(TokenContext);
   return (
-    <div className='l'> 
-    <button onClick={() =>{setGoToPageSeekerOrEmployer("registerSeeker");}}>Seeker</button>
-      <button onClick={() =>setGoToPageSeekerOrEmployer("registerEmployer")  }>Employer</button>
+    <div className='SeekerOrEmployer'> 
+    <button className='btn-Login' onClick={() =>{setGoToPageSeekerOrEmployer("registerSeeker");}}>Seeker</button>
+      <button className='btn-Login' onClick={() =>setGoToPageSeekerOrEmployer("registerEmployer")  }>Employer</button>
       {goToPageSeekerOrEmployer=="registerSeeker"&&<RegisterSeeker/>}
       {goToPageSeekerOrEmployer=="registerEmployer"&&<RegisterEmployer/>}
       {goToPageSeekerOrEmployer=="LoginSeeker"&&<LoginSeeker/>}

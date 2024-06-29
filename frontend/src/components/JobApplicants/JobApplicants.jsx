@@ -27,14 +27,31 @@ setSeekerApplied(result.data.presenters.seeker)
 }, []);
     
 return (
-    <div>
+    <div className="seekerInfo">
       {seekerApplied.map((elem, i) => (
-        <div key={i}>
-          <b>Full Name: {elem.fullName}</b><br />
-          <b>Phone Number: {elem.phoneNumber}</b><br />
-          <b>Email: {elem.email}</b><br />
-          <b>Years of Experience: {elem.yearsOfExperience}</b><br />
-        </div>
+    <div className="row mb-4" style={{
+      margin: '40px',
+      backgroundColor: 'rgb(238, 237, 237)',
+      padding: '10px',
+      borderRadius: '10px'
+    }}key={i}>
+    <div className="col-md-3">
+      <img
+        src={`${elem.profilePicture}`}
+        className="img-fluid rounded"
+        alt="Profile Pic"
+        style={{ width: '150px', height: '150px' }}
+      />
+    </div>
+    <div className="col-md-6">
+      <div className="mb-2"><b>Full Name:</b> {elem.fullName}</div>
+      <div className="mb-2"><b>Phone Number:</b> {elem.phoneNumber}</div>
+      <div className="mb-2"><b>Email:</b> {elem.email}</div>
+      <div className="mb-3">
+        <b>CV:</b> <a href={`${elem.cv}`} target="_blank" rel="noopener noreferrer">Show CV</a>
+      </div>
+      <div className="mb-3"><b>Education:</b> {elem.education}</div>
+      <div className="mb-3"><b>Years Of Experience:</b> {elem.yearsOfExperience} Years</div></div></div>
       ))}
     </div>
   );

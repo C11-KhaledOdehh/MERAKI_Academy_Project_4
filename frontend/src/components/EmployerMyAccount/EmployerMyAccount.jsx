@@ -32,7 +32,7 @@ if (!employer) {
 }
   
 return (
-  <div className="container mt-4">
+  <div className="myAccount">
     {employer.map((elem, index) => (
       <div className="row mb-4" key={index}>
         <div className="col-md-4" >
